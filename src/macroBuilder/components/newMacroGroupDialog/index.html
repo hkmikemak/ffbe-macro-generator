@@ -1,0 +1,41 @@
+<ng-container>
+  <div class="modal-header">
+    <h5 class="modal-title">Add Groups</h5>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div class="my-2 p-2 bg-danger text-white" *ngIf="hasError">
+      Code is invalid
+    </div>
+
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Mode</label>
+      <div class="col">
+        <div class="btn-group d-flex">
+          <button type="button" class="btn w-100" [disabled]="isCodeMode === true" [class.btn-primary]="isCodeMode === true" [class.btn-default]="isCodeMode !== true" (click)="setCodeMode(true)">Import from code</button>
+          <button type="button" class="btn w-100" [disabled]="isCodeMode === false" [class.btn-primary]="isCodeMode === false" [class.btn-default]="isCodeMode !== false" (click)="setCodeMode(false)">New empty group</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row" *ngIf="isCodeMode !== null">
+      <label class="col-2 col-form-label">{{ isCodeMode == true ? 'Code' : isCodeMode == false ? 'Name' : '' }}</label>
+      <div class="col">
+          <input type="text" class="form-control" setFocus placeholder="{{ isCodeMode == true ? 'Please enter code' : isCodeMode == false ? 'Please enter group name' : '' }}"  [formControl]="formControl" />
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button   type="button"
+              class="btn"
+              [class.btn-primary]="formControl.valid"
+              [class.btn-default]="formControl.invalid"
+              [disabled]="formControl.invalid"
+              (click)="submit()">
+      <i class="fas fa-sign-in-alt"></i>&nbsp;Submit
+    </button>
+  </div>
+</ng-container>

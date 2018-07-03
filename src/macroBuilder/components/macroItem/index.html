@@ -1,0 +1,12 @@
+<div class="input-group">
+  <div class="input-group-prepend">
+    <span class="input-group-text bg-dark text-white">{{ item.type }}</span>
+  </div>
+  <input type="text" class="form-control" readonly value="{{ actions[item.type].displayOption(item.option) }}" />
+  <div class="input-group-append">
+    <button class="btn" [class.btn-info]="canMoveUp" [class.btn-default]="!canMoveUp" [disabled]="!canMoveUp" type="button" (click)="itemMovedUp.emit()"><i class="fas fa-caret-up"></i></button>
+    <button class="btn" [class.btn-info]="canMoveDown" [class.btn-default]="!canMoveDown" [disabled]="!canMoveDown" type="button" (click)="itemMovedDown.emit()"><i class="fas fa-caret-down"></i></button>
+    <button type="button" class="btn btn-warning" (click)="openEditDialog()"><i class="fas fa-edit"></i></button>
+    <button type="button" class="btn btn-danger" (click)="itemDeleted.emit()"><i class="fas fa-trash"></i></button>
+  </div>
+</div>

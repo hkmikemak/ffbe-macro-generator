@@ -1,0 +1,21 @@
+<ng-container [formGroup]="formGroup" *ngIf="formGroup != null">
+    <div class="form-group row">
+      <label class="col-2 col-form-label">X</label>
+      <div class="col">
+        <input type="number" step="1" formControlName="x" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Y</label>
+      <div class="col">
+        <input type="number" step="1" formControlName="y" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <div class="offset-2 col">
+        <div class="d-flex flex-row flex-wrap">
+          <button *ngFor="let btn of buttons | keys" type="button" class="btn btn-default" (click)="setButton(btn)">{{btn}}</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
