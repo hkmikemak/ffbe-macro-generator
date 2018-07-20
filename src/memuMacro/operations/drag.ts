@@ -24,13 +24,12 @@ export interface IDragOption {
 
 export const drag = (option: IDragOption) => {
   return (source: Macro) => {
-    //console.log(`Draging from ${option.startPosition.x},${option.endPosition.y} to ${option.endPosition.x},${option.endPosition.y}`);
+    // console.log(`Draging from ${option.startPosition.x},${option.endPosition.y} to ${option.endPosition.x},${option.endPosition.y}`);
 
     source.pipe(delay({second: DELAY_BEFORE}));
 
     const easing = easingFunctions[option.easingFunction](EASING_POWER);
     const frameDiff = Math.floor(FRAME_PER_SECOND * DURATION_IN_SECOND / TIMEING_STEP);
-
 
     for (let currentStep = 0; currentStep <= TIMEING_STEP; currentStep++) {
       source.currentFrame += frameDiff;
@@ -47,7 +46,7 @@ export const drag = (option: IDragOption) => {
         const progress = easing(timeInEasing);
         const newX = Math.floor(option.startPosition.x + (option.endPosition.x - option.startPosition.x) * progress);
         const newY = Math.floor(option.startPosition.y + (option.endPosition.y - option.startPosition.y) * progress);
-        //console.log(`Step: ${currentStep}, Timing: ${timeInEasing}, Progress: ${progress}, ${newX},${newY}`);
+        // console.log(`Step: ${currentStep}, Timing: ${timeInEasing}, Progress: ${progress}, ${newX},${newY}`);
         source.scripts.push(`${source.currentFrame}--VINPUT--MULTI:1:2:${newX}:${newY}`);
       }
     }

@@ -1,11 +1,11 @@
 import { Component } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { IEditorComponent } from "../../interfaces/editorComponent";
 import { COMMON_BUTTONS } from "../../../ffbeMacro";
 import { IPosition } from "../../../memuMacro";
+import { IEditorComponent } from "../../interfaces/editorComponent";
 
 @Component({
-  templateUrl: './editor.html'
+  templateUrl: "./editor.html",
 })
 export class ClickEditorComponent implements IEditorComponent {
   public formGroup: FormGroup = null;
@@ -13,8 +13,8 @@ export class ClickEditorComponent implements IEditorComponent {
   public buttons = COMMON_BUTTONS;
 
   public setButton(key: string) {
-    this.formGroup.get('x').setValue((<IPosition>this.buttons[key]).x);
-    this.formGroup.get('y').setValue((<IPosition>this.buttons[key]).y);
+    this.formGroup.get("x").setValue((this.buttons[key] as IPosition).x);
+    this.formGroup.get("y").setValue((this.buttons[key] as IPosition).y);
   }
 
   public setFormGroup(formGroup: FormGroup) {

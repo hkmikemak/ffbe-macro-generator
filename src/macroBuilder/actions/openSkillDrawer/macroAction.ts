@@ -1,26 +1,26 @@
-import {  OpenSkillDrawerEditorComponent } from "./editor";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { IMacroAction } from "../..";
 import { IOpenSkillDrawerOption, openSkillDrawer } from "../../../ffbeMacro";
+import {  OpenSkillDrawerEditorComponent } from "./editor";
 
 export const OpenSkillDrawerMacroAction = {
   displayOption: (option: any) => {
     const delayOption = option as IOpenSkillDrawerOption;
     return `Slot ${delayOption.slot}`;
   },
-  macroBuilder: openSkillDrawer,
   editorComponent: OpenSkillDrawerEditorComponent,
-  formGroupToOption: (formGroup: FormGroup) => ({ slot: formGroup.get('slot').value } as IOpenSkillDrawerOption),
+  formGroupToOption: (formGroup: FormGroup) => ({ slot: formGroup.get("slot").value } as IOpenSkillDrawerOption),
+  macroBuilder: openSkillDrawer,
   optionToFormGroup: (option?: any) => {
-    let result = new FormGroup({
-      slot: new FormControl('', [Validators.required, Validators.min(1), Validators.max(6)])
+    const result = new FormGroup({
+      slot: new FormControl("", [Validators.required, Validators.min(1), Validators.max(6)]),
     });
 
     if (option) {
-      let delayOption = <IOpenSkillDrawerOption>option;
-      result.get('slot').setValue(delayOption.slot);
+      const delayOption = option as IOpenSkillDrawerOption;
+      result.get("slot").setValue(delayOption.slot);
     }
 
     return result;
-  }
-} as IMacroAction
+  },
+} as IMacroAction;

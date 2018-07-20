@@ -7,7 +7,7 @@
       <h2 class="flex-grow-1">Editor</h2>
       <button type="button" class="btn btn-info btn-sm" (click)="openExport()">Export</button>
     </div>
-    <div *ngFor="let group of macroGroups; let groupIndex = index;">
+    <div *ngFor="let group of (macroGroupService.observable | async) ; let groupIndex = index;">
       <macro-group  [group]="group"
                     (groupsAppended)="insertGroups(groupIndex, $event, false)"
                     (groupsPrepended)="insertGroups(groupIndex, $event, true)"
@@ -25,6 +25,6 @@
       <h2 class="flex-grow-1">Result</h2>
       <button type="button" class="btn btn-info btn-sm" (click)="copyResultToClipboard()">Copy to clipboard</button>
     </div>
-    <textarea class="flex-grow-1 form-control" #textarea_result readonly [value]="macroScript"></textarea>
+    <textarea class="flex-grow-1 form-control" readonly [value]="macroScript"></textarea>
   </section>
 </main>

@@ -1,28 +1,28 @@
-import { ClickMultipleSlotsEditorComponent } from "./editor";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { IMacroAction } from "../..";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { IClickMultipleSlotsOption, clickMultipleSlots } from "../../../ffbeMacro";
+import { clickMultipleSlots, IClickMultipleSlotsOption } from "../../../ffbeMacro";
+import { ClickMultipleSlotsEditorComponent } from "./editor";
 
 export const ClickMultipleSlotsMacroAction = {
   displayOption: (option: any) => {
     const clickOption = option as IClickMultipleSlotsOption;
-    return `Slots: ${clickOption.slots.join(', ')}`;
+    return `Slots: ${clickOption.slots.join(", ")}`;
   },
-  macroBuilder: clickMultipleSlots,
   editorComponent: ClickMultipleSlotsEditorComponent,
   formGroupToOption: (formGroup: FormGroup) => {
-    let values = formGroup.value;
-    let slots: number[] = [];
+    const values = formGroup.value;
+    const slots: number[] = [];
 
     Object.keys(values).forEach((key) => {
       if (values[key] === true) {
-        slots.push(parseInt(key.replace('slot_', '')));
+        slots.push(parseInt(key.replace("slot_", ""), 10));
       }
     });
     return { slots } as IClickMultipleSlotsOption;
   },
+  macroBuilder: clickMultipleSlots,
   optionToFormGroup: (option?: any) => {
-    let result = new FormGroup({
+    const result = new FormGroup({
       slot_1: new FormControl(false, []),
       slot_2: new FormControl(false, []),
       slot_3: new FormControl(false, []),
@@ -32,12 +32,12 @@ export const ClickMultipleSlotsMacroAction = {
     });
 
     if (option) {
-      let clickOption = <IClickMultipleSlotsOption>option;
+      const clickOption = option as IClickMultipleSlotsOption;
       clickOption.slots.map((i) => `slot_${i}`).forEach((i) => {
         result.get(i).setValue(true);
       });
     }
 
     return result;
-  }
-} as IMacroAction
+  },
+} as IMacroAction;

@@ -1,26 +1,26 @@
-import { ClickSlotEditorComponent } from "./editor";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { IMacroAction } from "../..";
-import { FormGroup, FormControl, Validators } from "@angular/forms";
-import { IClickSlotOption, clickSlot } from "../../../ffbeMacro";
+import { clickSlot, IClickSlotOption } from "../../../ffbeMacro";
+import { ClickSlotEditorComponent } from "./editor";
 
 export const ClickSlotMacroAction = {
   displayOption: (option: any) => {
     const clickOption = option as IClickSlotOption;
     return `Slot ${clickOption.slot}`;
   },
-  macroBuilder: clickSlot,
   editorComponent: ClickSlotEditorComponent,
-  formGroupToOption: (formGroup: FormGroup) => ({ slot: formGroup.get('slot').value } as IClickSlotOption),
+  formGroupToOption: (formGroup: FormGroup) => ({ slot: formGroup.get("slot").value } as IClickSlotOption),
+  macroBuilder: clickSlot,
   optionToFormGroup: (option?: any) => {
-    let result = new FormGroup({
-      slot: new FormControl('', [Validators.required, Validators.min(1), Validators.max(6)])
+    const result = new FormGroup({
+      slot: new FormControl("", [Validators.required, Validators.min(1), Validators.max(6)]),
     });
 
-    if(option) {
-      let clickOption = <IClickSlotOption> option;
-      result.get('slot').setValue(clickOption.slot);
+    if (option) {
+      const clickOption = option as IClickSlotOption;
+      result.get("slot").setValue(clickOption.slot);
     }
 
     return result;
-  }
-} as IMacroAction
+  },
+} as IMacroAction;

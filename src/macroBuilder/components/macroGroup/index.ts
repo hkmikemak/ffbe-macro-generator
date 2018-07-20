@@ -1,9 +1,9 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { IMacroGroup } from "../..";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { NewMacroGroupDialogComponent } from "../newMacroGroupDialog/index";
+import { IMacroGroup } from "../..";
 import { IMacroItem } from "../../interfaces/macroItem";
 import { MacroItemEditorComponent } from "../macroItemEditor";
+import { NewMacroGroupDialogComponent } from "../newMacroGroupDialog";
 
 @Component({
   selector: "macro-group",
@@ -25,8 +25,8 @@ export class MacroGroupComponent {
   constructor(private modalService: NgbModal) { }
 
   public moveItem(index: number, isUp: boolean) {
-    let newIndex = isUp ? index - 1 : index + 1;
-    let indexes = [index, newIndex].sort((a, b) => a - b);
+    const newIndex = isUp ? index - 1 : index + 1;
+    const indexes = [index, newIndex].sort((a, b) => a - b);
     this.group.items.splice(indexes[0], 2, this.group.items[indexes[1]], this.group.items[indexes[0]]);
     this.groupUpdated.emit();
   }
@@ -45,7 +45,7 @@ export class MacroGroupComponent {
   }
 
   public addItem() {
-    let modal = this.modalService.open(MacroItemEditorComponent, {
+    const modal = this.modalService.open(MacroItemEditorComponent, {
       backdrop: "static",
       centered: true,
       keyboard: false,
@@ -58,7 +58,7 @@ export class MacroGroupComponent {
             this.groupUpdated.emit();
           }
         })
-      .catch(() => { });
+      .catch(() => undefined);
   }
 
   public openDialog(isPrepend: boolean) {
@@ -73,15 +73,14 @@ export class MacroGroupComponent {
           (isPrepend ? this.groupsPrepended : this.groupsAppended).emit(result);
         }
       })
-      .catch(() => {
-
-      });
+      .catch(() => undefined);
   }
 
   public updateRepeat(newValue) {
-    let value = parseInt(newValue);
-    if (!isNaN(value))
+    const value = parseInt(newValue, 10);
+    if (!isNaN(value)) {
       this.repeatChanged.emit(value);
+    }
   }
 
   public updateGroupName(newValue) {

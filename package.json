@@ -36,7 +36,7 @@
   },
   "scripts": {
     "gulp": "gulp",
-    "lint": "tslint -c \"./tslint.json\" --fix --force \"./src/**/*.ts\""
+    "tslint": "tslint -c \"./tslint.json\" --fix --force \"./src/**/*.ts\""
   },
   "author": "",
   "license": "ISC",

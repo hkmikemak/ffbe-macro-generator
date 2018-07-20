@@ -1,6 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import { ReactiveFormsModule, FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { BrowserModule } from "@angular/platform-browser";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { MacroBuilderModule } from "../../../macroBuilder";
@@ -19,7 +19,7 @@ import { AppComponent } from "../components/app";
     FormsModule,
     ReactiveFormsModule,
     NgbModule.forRoot(),
-    MacroBuilderModule,
+    MacroBuilderModule.forRoot(),
   ],
   providers: [
   ],

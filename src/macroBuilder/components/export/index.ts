@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { IMacroGroup } from "../../interfaces/macroGroup";
+import { MacroGroupService } from "../..";
 import { exportMacroItems } from "../../shared/parser";
 const clipboard = require("clipboard-polyfill");
 
@@ -11,10 +11,8 @@ const clipboard = require("clipboard-polyfill");
 export class ExportComponent {
   public output: string = "";
 
-  constructor(public activeModal: NgbActiveModal) { }
-
-  public setOutput(source: IMacroGroup[]): void {
-    this.output = exportMacroItems(source);
+  constructor(public activeModal: NgbActiveModal, private macroGroupService: MacroGroupService) {
+    this.output = exportMacroItems(this.macroGroupService.getValue());
   }
 
   public copyOutputToClipboard() {

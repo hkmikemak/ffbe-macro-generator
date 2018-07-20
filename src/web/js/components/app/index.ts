@@ -1,61 +1,79 @@
-import { Component, ElementRef, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { IMacroGroup, IMacroAction } from "../../../../macroBuilder";
-import { ExportComponent } from "../../../../macroBuilder/components/export";
-import { ALL_ACTIONS } from "../../../../macroBuilder";
-import { NewMacroGroupDialogComponent } from "../../../../macroBuilder/components/newMacroGroupDialog";
+import { ALL_ACTIONS, ExportComponent, IMacroAction, IMacroGroup, MacroGroupService, NewMacroGroupDialogComponent } from "../../../../macroBuilder";
 import { Macro } from "../../../../memuMacro";
-const clipboard = require('clipboard-polyfill');
+const clipboard = require("clipboard-polyfill");
 
 @Component({
   selector: "app-root",
   styleUrls: ["./index.css"],
   templateUrl: "./index.html",
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
 
-  public macroGroups: IMacroGroup[] = [];
-  @ViewChild("textarea_result") public textarea: ElementRef;
-  public macroScript: string = '';
+  public macroScript: string;
 
-  constructor(private modalService: NgbModal) {
-    this.buildScript();
+  constructor(private modalService: NgbModal, public macroGroupService: MacroGroupService) { }
+
+  public buildScript = () => {
+    const macro = new Macro();
+    const groups = this.macroGroupService.getValue();
+
+    groups.forEach((group) => {
+      for (let i = 1; i <= group.repeat; i++) {
+      group.items.forEach((item) => {
+        macro.pipe((ALL_ACTIONS[item.type] as IMacroAction).macroBuilder(item.option));
+      });
+      }
+
+    });
+
+    this.macroScript = macro.toString();
+    }
+
+  public ngOnInit() {
+    this.macroGroupService.observable.subscribe((groups) => {
+      this.buildScript();
+    });
   }
 
   public removeGroup = (index: number) => {
-    this.macroGroups.splice(index, 1);
-    this.buildScript();
+    const groups = this.macroGroupService.getValue();
+    groups.splice(index, 1);
+    this.macroGroupService.setValue(groups);
   }
 
   public insertGroups = (index: number, groups: IMacroGroup[], isPrepend: boolean) => {
-    if(isPrepend)
-      this.macroGroups.splice(index, 0, ...groups);
-    else {
-      if(this.macroGroups.length -1 === index) {
-        this.macroGroups.push(...groups);
+    const oldValue = this.macroGroupService.getValue();
+    if (isPrepend) {
+      oldValue.splice(index, 0, ...groups);
+    } else {
+      if (oldValue.length - 1 === index) {
+        oldValue.push(...groups);
       } else {
-        this.macroGroups.splice(index + 1, 0, ...groups);
+        oldValue.splice(index + 1, 0, ...groups);
       }
     }
-
-    this.buildScript();
+    this.macroGroupService.setValue(oldValue);
   }
 
   public updateRepeat = (index: number, newValue: number) => {
-    if (this.macroGroups[index].repeat !== newValue) {
-      this.macroGroups[index].repeat = newValue;
-      this.buildScript();
-    }
-  };
-
-  public updateGroupName = (index : number, newValue: string) => {
-    if(this.macroGroups[index].name !== newValue) {
-      this.macroGroups[index].name = newValue;
+    const oldValue = this.macroGroupService.getValue();
+    if (oldValue[index].repeat !== newValue) {
+      oldValue[index].repeat = newValue;
+      this.macroGroupService.setValue(oldValue);
     }
   }
 
+  public updateGroupName = (index: number, newValue: string) => {
+    const oldValue = this.macroGroupService.getValue();
+    if (oldValue[index].name !== newValue) {
+      oldValue[index].name = newValue;
+      this.macroGroupService.setValue(oldValue);
+    }
+  }
 
-  public addGroup(isPrepend: boolean) {
+  public addGroup() {
     const modal = this.modalService.open(NewMacroGroupDialogComponent, {
       backdrop: "static",
       centered: true,
@@ -64,41 +82,24 @@ export class AppComponent {
     modal.result
       .then((result) => {
         if (result) {
-          this.macroGroups.push(...result);
-          this.buildScript();
+          const groups = this.macroGroupService.getValue();
+          groups.push(...result);
+          this.macroGroupService.setValue(groups);
         }
       })
-      .catch(() => {
-
-      });
+      .catch(() => undefined);
   }
 
   public openExport = () => {
-    const modal = this.modalService.open(ExportComponent, {
+    this.modalService.open(ExportComponent, {
       backdrop: "static",
       centered: true,
       keyboard: false,
     });
-    (modal.componentInstance as ExportComponent).setOutput(this.macroGroups);
   }
 
   public copyResultToClipboard = () => {
     clipboard.writeText(this.macroScript);
   }
 
-  public buildScript = () => {
-    let macro = new Macro();
-
-    this.macroGroups.forEach((group) => {
-
-      for(let i = 1; i <= group.repeat; i++) {
-        group.items.forEach((item) => {
-          macro.pipe((<IMacroAction>ALL_ACTIONS[item.type]).macroBuilder(item.option));
-        });
-      }
-
-    });
-
-    this.macroScript = macro.toString();
-  }
 }
