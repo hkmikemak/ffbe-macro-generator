@@ -1,0 +1,7 @@
+<ng-container>
+  <div class="pb-1 d-flex flex-row align-items-center">
+    <h2 class="flex-grow-1">Result</h2>
+    <button type="button" class="btn btn-info btn-sm" (click)="copyResultToClipboard()">Copy to clipboard</button>
+  </div>
+  <textarea class="flex-grow-1 form-control" readonly [value]="macroScript"></textarea>
+</ng-container>

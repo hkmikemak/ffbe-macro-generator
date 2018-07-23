@@ -1,7 +1,3 @@
-textarea {
-  resize: none;
-}
-
 .app-container > section {
   overflow-y: auto;
 }

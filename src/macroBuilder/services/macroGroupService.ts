@@ -14,6 +14,10 @@ export class MacroGroupService {
     this.observable = this.dataSource.asObservable();
   }
 
-  public getValue() { return this.dataSource.getValue(); }
+  public getValue() {
+    let result = this.dataSource.getValue();
+//    Object.freeze(result);
+    return result;
+  }
   public setValue(newValue: IMacroGroup[]) { this.dataSource.next(newValue); }
 }

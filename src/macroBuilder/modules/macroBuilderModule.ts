@@ -13,6 +13,7 @@ import { MacroGroupComponent } from "../components/macroGroup";
 import { MacroItemComponent } from "../components/macroItem";
 import { MacroItemEditorComponent } from "../components/macroItemEditor";
 import { NewMacroGroupDialogComponent } from "../components/newMacroGroupDialog/index";
+import { OutputComponent } from "../components/output";
 import { FocusDirective } from "../directives/focusDirective";
 import { KeysPipe } from "../pipes/keysPipe";
 import { MacroGroupService } from "../services/macroGroupService";
@@ -20,17 +21,18 @@ import { MacroGroupService } from "../services/macroGroupService";
 @NgModule({
   declarations: [
     ClickEditorComponent,
-    ClickSlotEditorComponent,
     ClickMultipleSlotsEditorComponent,
+    ClickSlotEditorComponent,
     DelayEditorComponent,
     ExportComponent,
     FocusDirective,
     KeysPipe,
     MacroGroupComponent,
     MacroItemComponent,
-    NewMacroGroupDialogComponent,
     MacroItemEditorComponent,
+    NewMacroGroupDialogComponent,
     OpenSkillDrawerEditorComponent,
+    OutputComponent,
     ScrollRowEditorComponent,
   ],
   entryComponents: [
@@ -56,6 +58,7 @@ import { MacroGroupService } from "../services/macroGroupService";
     NewMacroGroupDialogComponent,
     MacroItemEditorComponent,
     OpenSkillDrawerEditorComponent,
+    OutputComponent,
     ScrollRowEditorComponent,
   ],
   imports: [

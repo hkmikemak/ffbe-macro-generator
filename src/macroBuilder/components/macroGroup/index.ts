@@ -33,6 +33,7 @@ export class MacroGroupComponent {
 
   public deleteItem(index: number) {
     this.group.items.splice(index, 1);
+    this.groupUpdated.emit();
   }
 
   public updateItem(index: number, item: IMacroItem) {

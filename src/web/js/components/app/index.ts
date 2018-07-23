@@ -1,41 +1,14 @@
 import { Component, OnInit } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ALL_ACTIONS, ExportComponent, IMacroAction, IMacroGroup, MacroGroupService, NewMacroGroupDialogComponent } from "../../../../macroBuilder";
-import { Macro } from "../../../../memuMacro";
-const clipboard = require("clipboard-polyfill");
+import { ExportComponent, IMacroGroup, MacroGroupService, NewMacroGroupDialogComponent } from "../../../../macroBuilder";
 
 @Component({
   selector: "app-root",
   styleUrls: ["./index.css"],
   templateUrl: "./index.html",
 })
-export class AppComponent implements OnInit {
-
-  public macroScript: string;
-
+export class AppComponent {
   constructor(private modalService: NgbModal, public macroGroupService: MacroGroupService) { }
-
-  public buildScript = () => {
-    const macro = new Macro();
-    const groups = this.macroGroupService.getValue();
-
-    groups.forEach((group) => {
-      for (let i = 1; i <= group.repeat; i++) {
-      group.items.forEach((item) => {
-        macro.pipe((ALL_ACTIONS[item.type] as IMacroAction).macroBuilder(item.option));
-      });
-      }
-
-    });
-
-    this.macroScript = macro.toString();
-    }
-
-  public ngOnInit() {
-    this.macroGroupService.observable.subscribe((groups) => {
-      this.buildScript();
-    });
-  }
 
   public removeGroup = (index: number) => {
     const groups = this.macroGroupService.getValue();
@@ -73,6 +46,11 @@ export class AppComponent implements OnInit {
     }
   }
 
+  public updateGroup() {
+    const oldValue = this.macroGroupService.getValue();
+    this.macroGroupService.setValue(oldValue);
+  }
+
   public addGroup() {
     const modal = this.modalService.open(NewMacroGroupDialogComponent, {
       backdrop: "static",
@@ -96,10 +74,6 @@ export class AppComponent implements OnInit {
       centered: true,
       keyboard: false,
     });
-  }
-
-  public copyResultToClipboard = () => {
-    clipboard.writeText(this.macroScript);
   }
 
 }
