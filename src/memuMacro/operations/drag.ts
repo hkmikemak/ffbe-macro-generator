@@ -5,8 +5,8 @@ import { delay } from "./delay";
 
 const DURATION_IN_SECOND = 1;
 const TIMEING_STEP = 10;
-const DELAY_BEFORE = 0.5;
-const DELAY_AFTER = 0.5;
+const DELAY_BEFORE = 0.4;
+const DELAY_AFTER = 0.4;
 const EASING_POWER = 4;
 
 const easingFunctions = {
