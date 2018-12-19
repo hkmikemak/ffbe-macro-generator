@@ -1,7 +1,7 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { IMacroAction } from "../..";
-import { IOpenSkillDrawerOption, openSkillDrawer } from "../../../ffbeMacro";
-import {  OpenSkillDrawerEditorComponent } from "./editor";
+import { openSkillDrawer, IOpenSkillDrawerOption } from "../../../ffbeMacro";
+import { OpenSkillDrawerEditorComponent } from "./editor";
 
 export const OpenSkillDrawerMacroAction = {
   displayOption: (option: any) => {

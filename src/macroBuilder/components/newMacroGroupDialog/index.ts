@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import { IMacroGroup, importMacroItems } from "../..";
+import { importMacroItems, IMacroGroup } from "../..";
 
 @Component({
   templateUrl: "./index.html",

@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { moveItemInArray, CdkDragDrop } from "@angular/cdk/drag-drop";
+import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { IMacroGroup } from "../..";
 import { IMacroItem } from "../../interfaces/macroItem";
+import { MacroGroupService } from "../../services/macroGroupService";
 import { MacroItemEditorComponent } from "../macroItemEditor";
-import { NewMacroGroupDialogComponent } from "../newMacroGroupDialog";
 
 @Component({
   selector: "macro-group",
@@ -12,37 +13,21 @@ import { NewMacroGroupDialogComponent } from "../newMacroGroupDialog";
 })
 export class MacroGroupComponent {
   @Input() public group: IMacroGroup;
-
-  @Output() public groupUpdated: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public groupDeleted: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public groupsAppended: EventEmitter<IMacroGroup[]> = new EventEmitter<IMacroGroup[]>();
-  @Output() public groupsPrepended: EventEmitter<IMacroGroup[]> = new EventEmitter<IMacroGroup[]>();
-  @Output() public repeatChanged: EventEmitter<number> = new EventEmitter<number>();
-  @Output() public nameChanged: EventEmitter<number> = new EventEmitter<number>();
-
   public isCollapsed: boolean = true;
+  @Output() public deleteMeEvent: EventEmitter<void> = new EventEmitter();
 
-  constructor(private modalService: NgbModal) { }
+  constructor(private modalService: NgbModal, private macroGroupService: MacroGroupService) { }
 
-  public moveItem(index: number, isUp: boolean) {
-    const newIndex = isUp ? index - 1 : index + 1;
-    const indexes = [index, newIndex].sort((a, b) => a - b);
-    this.group.items.splice(indexes[0], 2, this.group.items[indexes[1]], this.group.items[indexes[0]]);
-    this.groupUpdated.emit();
+  public itemDrop(event: CdkDragDrop<IMacroItem[]>) {
+    if (event.previousIndex !== event.currentIndex) {
+      moveItemInArray(this.group.items, event.previousIndex, event.currentIndex);
+      this.macroGroupService.updateCurrent();
+    }
   }
 
   public deleteItem(index: number) {
     this.group.items.splice(index, 1);
-    this.groupUpdated.emit();
-  }
-
-  public updateItem(index: number, item: IMacroItem) {
-    this.group.items[index] = item;
-    this.groupUpdated.emit();
-  }
-
-  public deleteGroup() {
-    this.groupDeleted.emit();
+    this.macroGroupService.updateCurrent();
   }
 
   public addItem() {
@@ -52,26 +37,10 @@ export class MacroGroupComponent {
       keyboard: false,
     });
     modal.result
-      .then(
-        (result: IMacroItem) => {
-          if (result) {
-            this.group.items.push(result);
-            this.groupUpdated.emit();
-          }
-        })
-      .catch(() => undefined);
-  }
-
-  public openDialog(isPrepend: boolean) {
-    const modal = this.modalService.open(NewMacroGroupDialogComponent, {
-      backdrop: "static",
-      centered: true,
-      keyboard: false,
-    });
-    modal.result
-      .then((result) => {
+      .then((result: IMacroItem) => {
         if (result) {
-          (isPrepend ? this.groupsPrepended : this.groupsAppended).emit(result);
+          this.group.items.push(result);
+          this.macroGroupService.updateCurrent();
         }
       })
       .catch(() => undefined);
@@ -80,11 +49,18 @@ export class MacroGroupComponent {
   public updateRepeat(newValue) {
     const value = parseInt(newValue, 10);
     if (!isNaN(value)) {
-      this.repeatChanged.emit(value);
+      this.group.repeat = value;
+      this.macroGroupService.updateCurrent();
     }
   }
 
+  public updateItem(index: number, item: IMacroItem) {
+    this.group.items[index] = item;
+    this.macroGroupService.updateCurrent();
+  }
+
   public updateGroupName(newValue) {
-    this.nameChanged.emit(newValue);
+    this.group.name = newValue;
+    this.macroGroupService.updateCurrent();
   }
 }

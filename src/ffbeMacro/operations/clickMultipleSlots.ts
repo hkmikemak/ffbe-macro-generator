@@ -1,4 +1,4 @@
-import { CLICK_DELAY, Macro } from "../../memuMacro";
+import { Macro, MacroConfig } from "../../memuMacro";
 import { clickSlot } from "./clickSlot";
 
 export interface IClickMultipleSlotsOption {
@@ -6,10 +6,10 @@ export interface IClickMultipleSlotsOption {
 }
 
 export const clickMultipleSlots = (option: IClickMultipleSlotsOption) =>
-  (source: Macro) => option.slots.reduce(
+  (source: Macro, config: MacroConfig) => option.slots.reduce(
     (aggregatedSource, currentSlot) => {
-      aggregatedSource.pipe(clickSlot({slot: currentSlot}));
-      aggregatedSource.currentFrame -= CLICK_DELAY;
+      aggregatedSource.pipe(config, clickSlot({slot: currentSlot}));
+      aggregatedSource.currentFrame -= config.clickDelay;
       return aggregatedSource;
     }
     , source,

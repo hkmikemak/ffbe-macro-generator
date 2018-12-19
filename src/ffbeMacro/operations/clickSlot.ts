@@ -1,4 +1,4 @@
-import { click, Macro } from "../../memuMacro";
+import { click, Macro, MacroConfig } from "../../memuMacro";
 import { getSlotPosition } from "../constants";
 
 export interface IClickSlotOption {
@@ -6,4 +6,6 @@ export interface IClickSlotOption {
 }
 
 export const clickSlot = (option: IClickSlotOption) =>
-  click({ position: getSlotPosition(option.slot) });
+  (source: Macro, config: MacroConfig) => {
+    return source.pipe(config, click({ position: getSlotPosition(option.slot, config) }));
+  };

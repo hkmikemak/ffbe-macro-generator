@@ -1,5 +1,6 @@
 export { ExportComponent } from "./components/export";
 
+export { MacroConfigService } from "./services/macroConfigService";
 export { MacroGroupService } from "./services/macroGroupService";
 
 export { NewMacroGroupDialogComponent } from "./components/newMacroGroupDialog";

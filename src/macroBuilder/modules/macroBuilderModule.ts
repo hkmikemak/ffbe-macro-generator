@@ -1,3 +1,4 @@
+import { DragDropModule } from "@angular/cdk/drag-drop";
 import { CommonModule } from "@angular/common";
 import { ModuleWithProviders, NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
@@ -8,14 +9,17 @@ import { ClickSlotEditorComponent } from "../actions/clickSlot/editor";
 import { DelayEditorComponent } from "../actions/delay/editor";
 import { OpenSkillDrawerEditorComponent } from "../actions/openSkillDrawer/editor";
 import { ScrollRowEditorComponent } from "../actions/scrollRow/editor";
+import { ConfigEditorComponent } from "../components/configEditor";
 import { ExportComponent } from "../components/export";
 import { MacroGroupComponent } from "../components/macroGroup";
+import { MacroEditorComponent } from "../components/macroEditor";
 import { MacroItemComponent } from "../components/macroItem";
 import { MacroItemEditorComponent } from "../components/macroItemEditor";
 import { NewMacroGroupDialogComponent } from "../components/newMacroGroupDialog/index";
 import { OutputComponent } from "../components/output";
 import { FocusDirective } from "../directives/focusDirective";
 import { KeysPipe } from "../pipes/keysPipe";
+import { MacroConfigService } from "../services/macroConfigService";
 import { MacroGroupService } from "../services/macroGroupService";
 
 @NgModule({
@@ -29,11 +33,13 @@ import { MacroGroupService } from "../services/macroGroupService";
     KeysPipe,
     MacroGroupComponent,
     MacroItemComponent,
+    MacroEditorComponent,
     MacroItemEditorComponent,
     NewMacroGroupDialogComponent,
     OpenSkillDrawerEditorComponent,
     OutputComponent,
     ScrollRowEditorComponent,
+    ConfigEditorComponent,
   ],
   entryComponents: [
     ClickEditorComponent,
@@ -45,6 +51,7 @@ import { MacroGroupService } from "../services/macroGroupService";
     MacroItemEditorComponent,
     OpenSkillDrawerEditorComponent,
     ScrollRowEditorComponent,
+    ConfigEditorComponent,
   ],
   exports: [
     ClickEditorComponent,
@@ -60,21 +67,25 @@ import { MacroGroupService } from "../services/macroGroupService";
     OpenSkillDrawerEditorComponent,
     OutputComponent,
     ScrollRowEditorComponent,
+    ConfigEditorComponent,
+    MacroEditorComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
+    DragDropModule,
   ],
 })
 export class MacroBuilderModule {
-public static forRoot(): ModuleWithProviders {
-  return {
-    ngModule: MacroBuilderModule,
-    providers: [
-      MacroGroupService,
-    ],
-  };
-}
+  public static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: MacroBuilderModule,
+      providers: [
+        MacroGroupService,
+        MacroConfigService,
+      ],
+    };
+  }
 }

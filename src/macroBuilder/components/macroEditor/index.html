@@ -1,0 +1,9 @@
+
+<div cdkDropList (cdkDropListDropped)="itemDrop($event)">
+  <div class="d-flex flex-row align-items-start" cdkDrag *ngFor="let group of (macroGroupService.observable | async); let groupIndex = index;">
+    <i cdkDragHandle class="fas fa-arrows-alt pt-3 pr-1 drag"></i>
+    <macro-group class="flex-grow-1" [group]="group" (deleteMeEvent)="deleteGroup(groupIndex)"></macro-group>
+  </div>
+
+  <button class="btn btn-info btn-sm  d-block mx-auto my-2" type="button" (click)="addGroup()">Import&nbsp;&#47;&nbsp;New Group</button>
+</div>

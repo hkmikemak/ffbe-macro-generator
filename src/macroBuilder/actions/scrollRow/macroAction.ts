@@ -1,6 +1,6 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { IMacroAction } from "../..";
-import { IScrollRowOption, scrollRow } from "../../../ffbeMacro";
+import { scrollRow, IScrollRowOption } from "../../../ffbeMacro";
 import {  ScrollRowEditorComponent } from "./editor";
 
 export const ScrollRowMacroAction = {

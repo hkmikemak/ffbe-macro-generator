@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import * as clipboard from "clipboard-polyfill/build/clipboard-polyfill.promise";
 import { MacroGroupService } from "../..";
 import { exportMacroItems } from "../../shared/parser";
-const clipboard = require("clipboard-polyfill");
 
 @Component({
   styleUrls: ["./index.css"],

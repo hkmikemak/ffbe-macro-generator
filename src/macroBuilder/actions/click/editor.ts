@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormGroup } from "@angular/forms";
-import { COMMON_BUTTONS } from "../../../ffbeMacro";
+import { MacroConfigService } from "../..";
+import { getCommonButtonPosition } from "../../../ffbeMacro";
 import { IPosition } from "../../../memuMacro";
 import { IEditorComponent } from "../../interfaces/editorComponent";
 
@@ -10,7 +11,9 @@ import { IEditorComponent } from "../../interfaces/editorComponent";
 export class ClickEditorComponent implements IEditorComponent {
   public formGroup: FormGroup = null;
 
-  public buttons = COMMON_BUTTONS;
+  public buttons = getCommonButtonPosition(this.configService.getValue());
+
+  constructor(private configService: MacroConfigService) { }
 
   public setButton(key: string) {
     this.formGroup.get("x").setValue((this.buttons[key] as IPosition).x);

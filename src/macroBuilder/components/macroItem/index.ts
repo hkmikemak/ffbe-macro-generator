@@ -1,6 +1,7 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { ALL_ACTIONS, IMacroItem } from "../..";
+import { MacroGroupService } from "../../services/macroGroupService";
 import { MacroItemEditorComponent } from "../macroItemEditor";
 
 @Component({
@@ -9,17 +10,15 @@ import { MacroItemEditorComponent } from "../macroItemEditor";
 })
 export class MacroItemComponent {
   @Input() public item: IMacroItem;
-  @Input() public canMoveUp: boolean;
-  @Input() public canMoveDown: boolean;
-
-  @Output() public itemMovedUp: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public itemMovedDown: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public itemDeleted: EventEmitter<void> = new EventEmitter<void>();
-  @Output() public itemUpdated: EventEmitter<IMacroItem> = new EventEmitter<IMacroItem>();
+  @Output() public deleteMeEvent: EventEmitter<void> = new EventEmitter();
+  @Output() public updateMeEvent: EventEmitter<IMacroItem> = new EventEmitter();
 
   public actions = ALL_ACTIONS;
 
-  constructor(private modalService: NgbModal) { }
+  constructor(
+    private modalService: NgbModal,
+    private macroGroupService: MacroGroupService,
+  ) { }
 
   public openEditDialog() {
     const modal = this.modalService.open(MacroItemEditorComponent, {
@@ -31,8 +30,11 @@ export class MacroItemComponent {
     (modal.componentInstance as MacroItemEditorComponent).setOption(this.item);
 
     modal.result
-      .then((result: IMacroItem) => { if (result) { this.itemUpdated.emit(result); } })
+      .then((result: IMacroItem) => {
+        if (result) {
+          this.updateMeEvent.emit(result);
+        }
+      })
       .catch(() => undefined);
   }
-
 }

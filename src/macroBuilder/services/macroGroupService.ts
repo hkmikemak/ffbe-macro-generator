@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { IMacroGroup } from "..";
+import { deepFreeze } from "../shared/freeze";
 
 @Injectable({
   providedIn: "root",
@@ -15,9 +16,13 @@ export class MacroGroupService {
   }
 
   public getValue() {
-    let result = this.dataSource.getValue();
-//    Object.freeze(result);
+    const result = this.dataSource.getValue();
     return result;
   }
   public setValue(newValue: IMacroGroup[]) { this.dataSource.next(newValue); }
+
+  public updateCurrent() {
+    const result = this.dataSource.getValue();
+    this.dataSource.next(result);
+  }
 }

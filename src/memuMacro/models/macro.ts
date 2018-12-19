@@ -1,3 +1,5 @@
+import { MacroConfig } from "../interfaces/config";
+
 export class Macro {
   public currentFrame: number = 1000;
   public scripts: string[] = [];
@@ -7,12 +9,12 @@ export class Macro {
     return this.scripts.join("\n") + "\n";
   }
 
-  public pipe(...actions: Array<(source: Macro) => Macro>): Macro {
+  public pipe(config: MacroConfig, ...actions: Array<(source: Macro, config: MacroConfig) => Macro>): Macro {
     if (!actions || !actions.length) {
       return this;
     } else {
       return actions.reduce(
-        (aggreatedScript, currentAction) => currentAction(aggreatedScript),
+        (aggreatedScript, currentAction) => currentAction(aggreatedScript, config),
         this,
       );
     }

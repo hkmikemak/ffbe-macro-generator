@@ -1,3 +1,7 @@
 .input-repeat {
   max-width: 5rem;
 }
+
+.drag {
+  cursor: move;
+}

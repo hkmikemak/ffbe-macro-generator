@@ -2,56 +2,29 @@
   <div class="card">
     <div class="card-header">
       <div class="d-flex flex-row align-items-center">
-
-        <div class="flex-grow-1">
-            <div class="input-group input-group-sm">
-              <div class="input-group-prepend"><span class="input-group-text">Group Name</span></div>
-              <input type="text" class="form-control" [ngModel]="group.name" (ngModelChange)="updateGroupName($event)" />
-            </div>
-            <div class="input-group input-group-sm">
-              <div class="input-group-prepend">
-                <span class="input-group-text">Repeat</span>
-              </div>
-              <input type="number" class="form-control" step="1" [ngModel]="group.repeat" (ngModelChange)="updateRepeat($event)" />
-              <div class="input-group-append">
-                <span class="input-group-text">times</span>
-              </div>
-            </div>
+        <div class="input-group input-group-sm">
+          <div class="input-group-prepend"><span class="input-group-text">Group Name</span></div>
+          <input type="text" class="form-control" [ngModel]="group.name" (ngModelChange)="updateGroupName($event)" />
         </div>
-
-        <button class="btn btn-sm btn-link" type="button" (click)="addItem()">Add Action</button>
-
-        <div ngbDropdown #menu="ngbDropdown">
-          <button class="btn btn-link btn-sm" ngbDropdownAnchor (focus)="menu.open()"></button>
-          <div ngbDropdownMenu>
-            <div class="dropdown-item">
-              <button class="btn btn-block btn-sm btn-outline-info" (click)="menu.close();openDialog(true);">
-                <i class="fas fa-trash"></i>&nbsp;Add Group Before</button>
-            </div>
-            <div class="dropdown-item">
-              <button class="btn btn-block btn-sm btn-outline-info" (click)="menu.close();openDialog(false);">
-                <i class="fas fa-trash"></i>&nbsp;Add Group After</button>
-            </div>
-            <div class="dropdown-item">
-              <button class="btn btn-block btn-sm btn-danger" (click)="menu.close();deleteGroup()">
-                <i class="fas fa-trash"></i>&nbsp;Delete Group</button>
-            </div>
+        <div class="input-group input-group-sm">
+          <div class="input-group-prepend">
+            <span class="input-group-text">Repeat</span>
+          </div>
+          <input type="number" class="form-control" step="1" [ngModel]="group.repeat" (ngModelChange)="updateRepeat($event)" />
+          <div class="input-group-append">
+            <span class="input-group-text">times</span>
           </div>
         </div>
-
-        <button type="button" class="btn btn-sm btn-link" (click)="isCollapsed = !isCollapsed">
-          <i class="fas fa-eye" *ngIf="isCollapsed"></i>
-          <i class="fas fa-eye-slash" *ngIf="!isCollapsed"></i>
-        </button>
+        <button class="btn btn-sm btn-link text-danger" type="button" (click)="deleteMeEvent.emit()"><i class="fas fa-trash"></i></button>
+        <button type="button" class="btn btn-sm btn-link" (click)="isCollapsed = !isCollapsed"><i class="fas fa-ellipsis-h"></i></button>
       </div>
-
     </div>
-    <ul class="list-group list-group-flush" [ngbCollapse]="isCollapsed">
-      <li class="list-group-item">
-        <macro-item *ngFor="let item of group.items; let itemIndex = index;" [item]="item" [canMoveUp]="itemIndex" [canMoveDown]="itemIndex !== group.items.length - 1"
-          (itemDeleted)="deleteItem(itemIndex)" (itemMovedUp)="moveItem(itemIndex, true)" (itemMovedDown)="moveItem(itemIndex, false)"
-          (itemUpdated)="updateItem(itemIndex, $event)"></macro-item>
-      </li>
-    </ul>
+    <div cdkDropList class="p-2" [ngbCollapse]="isCollapsed" (cdkDropListDropped)="itemDrop($event)">
+      <div class="d-flex flex-row align-items-center" cdkDrag *ngFor="let item of group.items; let itemIndex = index;">
+        <i cdkDragHandle class="fas fa-arrows-alt pr-1 drag text-info"></i>
+        <macro-item class="flex-grow-1" [item]="item" (deleteMeEvent)="deleteItem(itemIndex)" (updateMeEvent)="updateItem(itemIndex, $event)"></macro-item>
+      </div>
+      <button class="btn btn-sm btn-info d-block mx-auto my-2" type="button" (click)="addItem()"><i class="fas fa-plus-circle"></i>&nbsp;Add New Action</button>
+    </div>
   </div>
 </div>
