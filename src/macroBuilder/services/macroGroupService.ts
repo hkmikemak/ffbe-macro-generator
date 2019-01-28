@@ -7,8 +7,8 @@ import { deepFreeze } from "../shared/freeze";
   providedIn: "root",
 })
 export class MacroGroupService {
-  public observable: Observable<IMacroGroup[]>;
   private dataSource: BehaviorSubject<IMacroGroup[]>;
+  public observable: Observable<IMacroGroup[]>;
 
   constructor() {
     this.dataSource = new BehaviorSubject<IMacroGroup[]>([]);

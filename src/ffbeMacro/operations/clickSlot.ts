@@ -6,6 +6,5 @@ export interface IClickSlotOption {
 }
 
 export const clickSlot = (option: IClickSlotOption) =>
-  (source: Macro, config: MacroConfig) => {
-    return source.pipe(config, click({ position: getSlotPosition(option.slot, config) }));
-  };
+  (source: Macro, config: MacroConfig) =>
+    source.pipe(config, click({ position: getSlotPosition(option.slot, config) }));

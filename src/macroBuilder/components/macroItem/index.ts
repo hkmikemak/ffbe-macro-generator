@@ -17,7 +17,7 @@ export class MacroItemComponent {
 
   constructor(
     private modalService: NgbModal,
-    private macroGroupService: MacroGroupService,
+    private macroGroupService: MacroGroupService
   ) { }
 
   public openEditDialog() {

@@ -7,12 +7,13 @@ import { ClickEditorComponent } from "../actions/click/editor";
 import { ClickMultipleSlotsEditorComponent } from "../actions/clickMultipleSlots/editor";
 import { ClickSlotEditorComponent } from "../actions/clickSlot/editor";
 import { DelayEditorComponent } from "../actions/delay/editor";
+import { DragEditorComponent } from "../actions/drag/editor";
 import { OpenSkillDrawerEditorComponent } from "../actions/openSkillDrawer/editor";
 import { ScrollRowEditorComponent } from "../actions/scrollRow/editor";
 import { ConfigEditorComponent } from "../components/configEditor";
 import { ExportComponent } from "../components/export";
-import { MacroGroupComponent } from "../components/macroGroup";
 import { MacroEditorComponent } from "../components/macroEditor";
+import { MacroGroupComponent } from "../components/macroGroup";
 import { MacroItemComponent } from "../components/macroItem";
 import { MacroItemEditorComponent } from "../components/macroItemEditor";
 import { NewMacroGroupDialogComponent } from "../components/newMacroGroupDialog/index";
@@ -28,6 +29,7 @@ import { MacroGroupService } from "../services/macroGroupService";
     ClickMultipleSlotsEditorComponent,
     ClickSlotEditorComponent,
     DelayEditorComponent,
+    DragEditorComponent,
     ExportComponent,
     FocusDirective,
     KeysPipe,
@@ -46,6 +48,7 @@ import { MacroGroupService } from "../services/macroGroupService";
     ClickSlotEditorComponent,
     ClickMultipleSlotsEditorComponent,
     DelayEditorComponent,
+    DragEditorComponent,
     ExportComponent,
     NewMacroGroupDialogComponent,
     MacroItemEditorComponent,
@@ -58,6 +61,7 @@ import { MacroGroupService } from "../services/macroGroupService";
     ClickSlotEditorComponent,
     ClickMultipleSlotsEditorComponent,
     DelayEditorComponent,
+    DragEditorComponent,
     ExportComponent,
     FocusDirective,
     MacroGroupComponent,

@@ -7,8 +7,8 @@ import { deepFreeze } from "../shared/freeze";
   providedIn: "root",
 })
 export class MacroConfigService {
-  public observable: Observable<MacroConfig>;
   private dataSource: BehaviorSubject<MacroConfig>;
+  public observable: Observable<MacroConfig>;
 
   constructor() {
     this.dataSource = new BehaviorSubject<MacroConfig>(new MacroConfig());

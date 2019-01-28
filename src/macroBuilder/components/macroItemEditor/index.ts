@@ -10,18 +10,32 @@ import { ALL_ACTIONS } from "../../shared/actions";
   templateUrl: "./index.html",
 })
 export class MacroItemEditorComponent implements OnInit {
-  public formControl: FormControl = new FormControl("", [Validators.required]);
-  public formGroup: FormGroup = null;
-  public actions: any;
   private option: any;
 
   @ViewChild("editorHost", { read: ViewContainerRef }) private editorHost: ViewContainerRef;
+  public formControl: FormControl = new FormControl("", [Validators.required]);
+  public formGroup: FormGroup = null;
+  public actions: any;
 
   constructor(
     public activeModal: NgbActiveModal,
-    private componentFactoryResolver: ComponentFactoryResolver,
+    private componentFactoryResolver: ComponentFactoryResolver
   ) {
     this.actions = ALL_ACTIONS;
+  }
+
+  private createEditor() {
+    if (this.formControl.value) {
+      const macroAction = (this.actions[this.formControl.value] as IMacroAction);
+      this.formGroup = macroAction.optionToFormGroup(this.option);
+      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(macroAction.editorComponent);
+
+      this.editorHost.clear();
+
+      const editorComponent = this.editorHost.createComponent(componentFactory);
+      const editorInstance = editorComponent.instance as IEditorComponent;
+      editorInstance.setFormGroup(this.formGroup);
+    }
   }
 
   public ngOnInit(): void {
@@ -42,19 +56,5 @@ export class MacroItemEditorComponent implements OnInit {
     const macroAction = (this.actions[this.formControl.value] as IMacroAction);
     const option = macroAction.formGroupToOption(this.formGroup);
     this.activeModal.close({ option, type: this.formControl.value } as IMacroItem);
-  }
-
-  private createEditor() {
-    if (this.formControl.value) {
-      const macroAction = (this.actions[this.formControl.value] as IMacroAction);
-      this.formGroup = macroAction.optionToFormGroup(this.option);
-      const componentFactory = this.componentFactoryResolver.resolveComponentFactory(macroAction.editorComponent);
-
-      this.editorHost.clear();
-
-      const editorComponent = this.editorHost.createComponent(componentFactory);
-      const editorInstance = editorComponent.instance as IEditorComponent;
-      editorInstance.setFormGroup(this.formGroup);
-    }
   }
 }

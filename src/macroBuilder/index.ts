@@ -11,3 +11,5 @@ export { IMacroItem } from "./interfaces/macroItem";
 export { MacroBuilderModule } from "./modules/macroBuilderModule";
 export { exportMacroItems, importMacroItems } from "./shared/parser";
 export { ALL_ACTIONS } from "./shared/actions";
+
+export { IExportedMacro } from "./interfaces/exportMacro";

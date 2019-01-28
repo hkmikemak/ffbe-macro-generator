@@ -15,7 +15,7 @@ export class Macro {
     } else {
       return actions.reduce(
         (aggreatedScript, currentAction) => currentAction(aggreatedScript, config),
-        this,
+        this
       );
     }
   }

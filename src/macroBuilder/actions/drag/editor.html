@@ -1,0 +1,37 @@
+<ng-container [formGroup]="formGroup" *ngIf="formGroup != null">
+    <div class="form-group row">
+      <label class="col-2 col-form-label">From X</label>
+      <div class="col">
+        <input type="number" step="1" formControlName="from_x" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">From Y</label>
+      <div class="col">
+        <input type="number" step="1" formControlName="from_y" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">To X</label>
+      <div class="col">
+        <input type="number" step="1" formControlName="to_x" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">To Y</label>
+      <div class="col">
+        <input type="number" step="1" formControlName="to_y" class="form-control" />
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Easing Function</label>
+      <div class="col">
+        <select formControlName="easingFunction" class="form-control">
+          <option value="easeInOut">Ease In, Ease Out</option>
+          <option value="easeIn">Ease In</option>
+          <option value="easeOut">Ease Out</option>
+          <option value="linear">Linear</option>
+        </select>
+      </div>
+    </div>
+  </ng-container>

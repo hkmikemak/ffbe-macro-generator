@@ -1,5 +1,5 @@
 import { moveItemInArray, CdkDragDrop } from "@angular/cdk/drag-drop";
-import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from "@angular/core";
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { IMacroGroup } from "../..";
 import { IMacroItem } from "../../interfaces/macroItem";

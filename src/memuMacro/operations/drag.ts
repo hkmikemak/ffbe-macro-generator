@@ -22,8 +22,8 @@ export interface IDragOption {
   easingFunction: string;
 }
 
-export const drag = (option: IDragOption) => {
-  return (source: Macro, config: MacroConfig) => {
+export const drag = (option: IDragOption) =>
+  (source: Macro, config: MacroConfig) => {
     // console.log(`Draging from ${option.startPosition.x},${option.endPosition.y} to ${option.endPosition.x},${option.endPosition.y}`);
 
     source.pipe(config, delay({second: DELAY_BEFORE}));
@@ -57,4 +57,3 @@ export const drag = (option: IDragOption) => {
 
     return source.pipe(config, delay({ second: DELAY_AFTER }));
   };
-};
