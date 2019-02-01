@@ -1,6 +1,6 @@
 import { Component } from "@angular/core";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ExportComponent, IMacroGroup, MacroGroupService, NewMacroGroupDialogComponent } from "../../../../macroBuilder";
+import { ExportComponent } from "../../../../macroBuilder";
 import { ConfigEditorComponent } from "../../../../macroBuilder/components/configEditor";
 
 @Component({
