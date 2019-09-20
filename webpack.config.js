@@ -20,7 +20,6 @@ module.exports = {
       { test: /(?:\.ngfactory\.js|\.ngstyle\.js|\.ts)$/, use: ['@ngtools/webpack'] },
     ]
   },
-
   optimization: {
     noEmitOnErrors: true,
     mangleWasmImports: true,
@@ -51,11 +50,11 @@ module.exports = {
       }
     }
   },
-
   plugins: [
     new AngularCompilerPlugin({
+      enableIvy: true,
+      entryModule: './src/web/js/modules/app.module#AppModule',
       tsConfigPath: './tsconfig.json',
-      entryModule: './src/web/js/modules/app.module#AppModule'
     }),
     new BundleAnalyzerPlugin()
   ]

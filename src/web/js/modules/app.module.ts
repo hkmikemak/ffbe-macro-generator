@@ -18,7 +18,7 @@ import { AppComponent } from "../components/app";
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule.forRoot(),
+    NgbModule,
     MacroBuilderModule.forRoot(),
   ],
   providers: [

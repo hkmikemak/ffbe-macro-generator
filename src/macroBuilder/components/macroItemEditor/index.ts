@@ -12,7 +12,7 @@ import { ALL_ACTIONS } from "../../shared/actions";
 export class MacroItemEditorComponent implements OnInit {
   private option: any;
 
-  @ViewChild("editorHost", { read: ViewContainerRef }) private editorHost: ViewContainerRef;
+  @ViewChild("editorHost", { read: ViewContainerRef, static: true }) private editorHost: ViewContainerRef;
   public formControl: FormControl = new FormControl("", [Validators.required]);
   public formGroup: FormGroup = null;
   public actions: any;
