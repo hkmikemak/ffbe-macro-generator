@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject, Observable } from "rxjs";
 import { IMacroGroup } from "..";
-import { deepFreeze } from "../shared/freeze";
 
 @Injectable({
   providedIn: "root",

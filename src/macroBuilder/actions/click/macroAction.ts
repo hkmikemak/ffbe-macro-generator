@@ -1,4 +1,4 @@
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import { IMacroAction } from "../..";
 import { click, IClickOption } from "../../../memuMacro";
 import { ClickEditorComponent } from "./editor";
@@ -13,8 +13,8 @@ export const ClickMacroAction = {
   macroBuilder: click,
   optionToFormGroup: (option?: any) => {
     const result = new FormGroup({
-      x: new FormControl("", [Validators.required, Validators.min(0), Validators.max(720)]),
-      y: new FormControl("", [Validators.required, Validators.min(0), Validators.max(1280)]),
+      x: new FormControl(""),
+      y: new FormControl(""),
     });
 
     if (option) {

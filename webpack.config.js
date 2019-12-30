@@ -3,12 +3,13 @@
 const path = require('path');
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin  = require('terser-webpack-plugin');
 
 module.exports = {
   entry: {
     macro: ['./src/memuMacro/index.ts', './src/ffbeMacro/index.ts', './src/macroBuilder/index.ts'],
-    main: './src/web/js/main.ts'
+    main: './src/web/js/main.ts',
+    theme: './src/web/js/theme.js'
   },
   output: { path: path.resolve(__dirname, 'dist/js'), filename: '[name].js' },
   // stats: "minimal",
@@ -24,10 +25,11 @@ module.exports = {
     noEmitOnErrors: true,
     mangleWasmImports: true,
     minimizer: [
-      new UglifyJsPlugin({
+      new TerserPlugin({
         cache: true,
+        extractComments: false,
         parallel: true,
-        uglifyOptions: {
+        terserOptions: {
           compress: true,
           ecma: 6,
           mangle: true,

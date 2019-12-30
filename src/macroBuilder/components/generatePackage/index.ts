@@ -2,7 +2,9 @@ import { Component } from "@angular/core";
 import { FormControl, Validators } from "@angular/forms";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 
-import * as FileSaver from "file-saver/FileSaver";
+// import * as FileSaver from "file-saver/FileSaver";
+
+import {saveAs} from "file-saver";
 import * as JSZip from "jszip";
 import { MacroGroupService } from "../..";
 import { MacroConfigService } from "../../services/macroConfigService";
@@ -36,7 +38,8 @@ export class GeneratorPackageComponent {
     zip.file(scriptFilename + ".mir", scriptContent);
     zip.file("export", exportContent);
     zip.generateAsync({ type: "blob" }).then((content) => {
-      FileSaver.saveAs(content, `${scriptName}.scp`);
+      // FileSaver.saveAs(content, `${scriptName}.scp`);
+      saveAs(content, `${scriptName}.scp`);
     });
   }
 }

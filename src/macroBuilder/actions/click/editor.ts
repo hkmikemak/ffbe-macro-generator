@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { FormGroup } from "@angular/forms";
+import { FormGroup, Validators } from "@angular/forms";
 import { MacroConfigService } from "../..";
 import { getCommonButtonPosition } from "../../../ffbeMacro";
 import { IPosition } from "../../../memuMacro";
@@ -22,5 +22,7 @@ export class ClickEditorComponent implements IEditorComponent {
 
   public setFormGroup(formGroup: FormGroup) {
     this.formGroup = formGroup;
+    this.formGroup.get("x").setValidators([Validators.required, Validators.min(0), Validators.max(this.configService.getValue().screenWidth)]);
+    this.formGroup.get("x").setValidators([Validators.required, Validators.min(0), Validators.max(this.configService.getValue().screenHeight)]);
   }
 }
