@@ -11,5 +11,5 @@ export const buildMacro = (groups: IMacroGroup[], config: MacroConfig) => {
       });
     }
   });
-  return macro.toString();
+  return macro.toString(config);
 };

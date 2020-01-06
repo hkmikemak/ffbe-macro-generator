@@ -10,6 +10,7 @@ import { IClickOption } from "../../../memuMacro";
 export class ConfigEditorComponent {
 
   public formGroup: FormGroup = null;
+  public mode: string;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -23,12 +24,19 @@ export class ConfigEditorComponent {
       screenHeight: new FormControl(currentConfig.screenHeight, [Validators.required, Validators.min(0)]),
       screenWidth: new FormControl(currentConfig.screenWidth, [Validators.required, Validators.min(0)]),
     });
+
+    this.mode = currentConfig.mode;
+  }
+
+  public setMode(value: string) {
+    this.mode = value;
   }
 
   public submit() {
     const currentConfig = this.macroConfigService.getValue();
     const newConfig = {
       framePerSecond: this.formGroup.get("framePerSecond").value,
+      mode: this.mode,
       screenHeight: this.formGroup.get("screenHeight").value,
       screenWidth: this.formGroup.get("screenWidth").value,
     };
