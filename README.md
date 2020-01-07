@@ -1,4 +1,4 @@
-# MEMU Macro Generator for FFBE
+# Macro Generator for FFBE
 
 An memu macro generator for playing FFBE.
 Website can be found [here](https://ffbe-memu-macro-builder.github.io/).

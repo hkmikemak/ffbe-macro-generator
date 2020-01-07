@@ -15,8 +15,8 @@
             <span class="input-group-text">times</span>
           </div>
         </div>
-        <button class="btn btn-sm btn-link text-danger" type="button" (click)="deleteMeEvent.emit()"><i class="fas fa-trash"></i></button>
-        <button type="button" class="btn btn-sm btn-link" (click)="isCollapsed = !isCollapsed"><i class="fas fa-ellipsis-h"></i></button>
+        <button class="btn btn-sm btn-link text-danger" type="button" (click)="deleteMeEvent.emit()" aria-label="Delete"><i class="fas fa-trash"></i></button>
+        <button type="button" class="btn btn-sm btn-link" (click)="isCollapsed = !isCollapsed" aria-label="Collapse or Expand"><i class="fas fa-ellipsis-h"></i></button>
       </div>
     </div>
     <div cdkDropList class="p-2" [ngbCollapse]="isCollapsed" (cdkDropListDropped)="itemDrop($event)">

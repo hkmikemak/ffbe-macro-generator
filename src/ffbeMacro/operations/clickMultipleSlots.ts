@@ -12,13 +12,12 @@ export const clickMultipleSlots = (option: IClickMultipleSlotsOption) =>
     (aggregatedSource, currentSlot) => {
       const slotPosition = getSlotPosition(currentSlot, config);
 
-
-      if(config.mode === 'MEmu') {
+      if (config.mode === "MEmu") {
         aggregatedSource.scripts.push(`${aggregatedSource.currentFrame}--VINPUT--MULTI2:1:0:0:${slotPosition.x}:${slotPosition.y}:0`);
         aggregatedSource.currentFrame += CLICK_WAIT;
         aggregatedSource.scripts.push(`${aggregatedSource.currentFrame}--VINPUT--MULTI2:1:0:-1:-1:-2:2`);
         aggregatedSource.currentFrame -= CLICK_WAIT;
-      } else if (config.mode === 'Nox') {
+      } else if (config.mode === "Nox") {
 
         // 0ScRiPtSePaRaToR720|1280|MULTI:1:0:166:1088ScRiPtSePaRaToR0
         // 0ScRiPtSePaRaToR720|1280|MULTI:0:6ScRiPtSePaRaToR100

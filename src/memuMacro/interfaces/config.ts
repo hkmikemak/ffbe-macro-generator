@@ -5,5 +5,3 @@ export class MacroConfig {
   public screenHeight = 1280;
   public screenWidth = 720;
 }
-
-

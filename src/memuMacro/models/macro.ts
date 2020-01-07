@@ -5,9 +5,9 @@ export class Macro {
   public scripts: string[] = [];
 
   public toString = (config: MacroConfig) => {
-    if(config.mode === 'Nox') {
+    if (config.mode === "Nox") {
       this.scripts.push(`0ScRiPtSePaRaToR${config.screenWidth}|${config.screenHeight}|MULTI:0:6ScRiPtSePaRaToR${this.currentFrame}`);
-    } else if (config.mode === 'MEmu') {
+    } else if (config.mode === "MEmu") {
       this.scripts.push(`${this.currentFrame}--VINPUT--MOUSE:0:0`);
     }
 

@@ -25,10 +25,9 @@ export interface IDragOption {
 export const drag = (option: IDragOption) =>
   (source: Macro, config: MacroConfig) => {
 
-
     source.pipe(config, delay({ second: DELAY_BEFORE }));
 
-    if (config.mode === 'MEmu') {
+    if (config.mode === "MEmu") {
 
       const easing = easingFunctions[option.easingFunction](EASING_POWER);
       const frameDiff = Math.floor(config.framePerSecond * DURATION_IN_SECOND / TIMEING_STEP);
@@ -56,9 +55,7 @@ export const drag = (option: IDragOption) =>
       source.currentFrame += frameDiff;
       source.scripts.push(`${source.currentFrame}--VINPUT--MULTI2:1:0:-1:-1:-2:2`);
 
-
-    } else if (config.mode==='Nox') {
-
+    } else if (config.mode === "Nox") {
 
       //
       // 0ScRiPtSePaRaToR720|1280|MULTI:1:2:388:1141ScRiPtSePaRaToR1208
@@ -76,8 +73,6 @@ export const drag = (option: IDragOption) =>
       // 0ScRiPtSePaRaToR720|1280|MULTI:0:6ScRiPtSePaRaToR2000
       // 0ScRiPtSePaRaToR720|1280|MULTI:0:1ScRiPtSePaRaToR2000
       // 0ScRiPtSePaRaToR720|1280|MSBRL:0:0ScRiPtSePaRaToR2001
-
-
 
       const easing = easingFunctions[option.easingFunction](EASING_POWER);
       const frameDiff = Math.floor(1000 * DURATION_IN_SECOND / TIMEING_STEP);

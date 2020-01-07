@@ -22,7 +22,7 @@
     "@angular/compiler": "^8.2.14",
     "@angular/compiler-cli": "^8.2.14",
     "@ngtools/webpack": "^8.3.21",
-    "@types/node": "^13.1.1",
+    "@types/node": "^13.1.4",
     "browser-sync": "^2.26.7",
     "chalk": "^3.0.0",
     "core-decorators": "^0.20.0",
