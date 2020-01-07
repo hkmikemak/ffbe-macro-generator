@@ -1,7 +1,7 @@
 # Macro Generator for FFBE
 
-An memu macro generator for playing FFBE.
-Website can be found [here](https://ffbe-memu-macro-builder.github.io/).
+An memu macro generator for playing FFBE. Support both MEmu and Nox.
+Website can be found [here](https://hkmikemak.github.io/ffbe-macro-generator/).
 
 ## Available Actions
 
