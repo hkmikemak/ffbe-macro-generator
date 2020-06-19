@@ -23,6 +23,7 @@ import { FocusDirective } from "../directives/focusDirective";
 import { KeysPipe } from "../pipes/keysPipe";
 import { MacroConfigService } from "../services/macroConfigService";
 import { MacroGroupService } from "../services/macroGroupService";
+import { MacroItemEditorAnchorDirective } from "../components/macroItemEditorAnchor";
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { MacroGroupService } from "../services/macroGroupService";
     MacroEditorComponent,
     MacroGroupComponent,
     MacroItemComponent,
+    MacroItemEditorAnchorDirective,
     MacroItemEditorComponent,
     NewMacroGroupDialogComponent,
     OpenSkillDrawerEditorComponent,

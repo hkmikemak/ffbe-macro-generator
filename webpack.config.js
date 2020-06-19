@@ -31,7 +31,7 @@ module.exports = {
         parallel: true,
         terserOptions: {
           compress: true,
-          ecma: 6,
+          ecma: 2020,
           mangle: true,
           output: {
             beautify: false,
@@ -54,12 +54,14 @@ module.exports = {
   },
   plugins: [
     new AngularCompilerPlugin({
-      disableTypeScriptVersionCheck: true,
-      enableIvy: true,
       entryModule: './src/web/js/modules/app.module#AppModule',
-      strictInjectionParameters: true,
-      strictTemplates: true,
       tsConfigPath: './tsconfig.json',
+      compilerOptions: {
+        enableIvy: false,
+        alwaysStrict: true,
+        removeComments: true,
+        trace: true,
+      },
     }),
     new BundleAnalyzerPlugin()
   ]

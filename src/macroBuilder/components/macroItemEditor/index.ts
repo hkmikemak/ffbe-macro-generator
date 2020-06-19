@@ -5,14 +5,14 @@ import { distinctUntilChanged } from "rxjs/operators";
 import { IMacroAction, IMacroItem } from "../..";
 import { IEditorComponent } from "../../interfaces/editorComponent";
 import { ALL_ACTIONS } from "../../shared/actions";
+import { MacroItemEditorAnchorDirective } from "../macroItemEditorAnchor";
 
 @Component({
   templateUrl: "./index.html",
 })
 export class MacroItemEditorComponent implements OnInit {
   private option: any;
-
-  @ViewChild("editorHost", { read: ViewContainerRef, static: true }) private editorHost: ViewContainerRef;
+  @ViewChild(MacroItemEditorAnchorDirective, { static: true }) private editorHost: MacroItemEditorAnchorDirective;
   public formControl: FormControl = new FormControl("", [Validators.required]);
   public formGroup: FormGroup = null;
   public actions: any;
@@ -29,12 +29,10 @@ export class MacroItemEditorComponent implements OnInit {
       const macroAction = (this.actions[this.formControl.value] as IMacroAction);
       this.formGroup = macroAction.optionToFormGroup(this.option);
       const componentFactory = this.componentFactoryResolver.resolveComponentFactory(macroAction.editorComponent);
-
-      this.editorHost.clear();
-
-      const editorComponent = this.editorHost.createComponent(componentFactory);
-      const editorInstance = editorComponent.instance as IEditorComponent;
-      editorInstance.setFormGroup(this.formGroup);
+      const viewContainerRef = this.editorHost.viewContainerRef;
+      viewContainerRef.clear();
+      const componentRef = viewContainerRef.createComponent(componentFactory);
+      (<IEditorComponent>componentRef.instance).setFormGroup(this.formGroup);
     }
   }
 
