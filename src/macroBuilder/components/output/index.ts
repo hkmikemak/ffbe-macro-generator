@@ -2,7 +2,7 @@ import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import * as clipboard from "clipboard-polyfill/build/clipboard-polyfill.promise";
 import { merge } from "rxjs";
 import { ALL_ACTIONS, GeneratorPackageComponent, IMacroAction, MacroConfigService } from "../..";
-import { Component, OnInit } from "../../../../node_modules/@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Macro } from "../../../memuMacro";
 import { MacroGroupService } from "../../services/macroGroupService";
 import { buildMacro } from "../../shared/build";
