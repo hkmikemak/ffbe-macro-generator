@@ -89,7 +89,7 @@ import { MacroItemEditorAnchorDirective } from "../components/macroItemEditorAnc
   ],
 })
 export class MacroBuilderModule {
-  public static forRoot(): ModuleWithProviders {
+  public static forRoot(): ModuleWithProviders<MacroBuilderModule> {
     return {
       ngModule: MacroBuilderModule,
       providers: [
