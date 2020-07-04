@@ -18,14 +18,17 @@ export const scrollRow = (option: IScrollRowOption) =>
     let rowCounter = option.rows;
     const drags = [];
 
-    while (rowCounter > 3) {
-      const tempEndPosition = { x: calculatedStartPosition.x, y: calculatedStartPosition.y - 3 * calculatedRowHeight } as IPosition;
+    // Workaround to the bug in pixel calculator in 1080p, reduce step to 2
+    const moveStep = 2;
+
+    while (rowCounter > moveStep) {
+      const tempEndPosition = { x: calculatedStartPosition.x, y: calculatedStartPosition.y - moveStep * calculatedRowHeight } as IPosition;
       drags.push(drag({
         easingFunction: "easeOut",
         endPosition: option.direction === "down" ? tempEndPosition : calculatedStartPosition,
         startPosition: option.direction === "down" ? calculatedStartPosition : tempEndPosition,
       }));
-      rowCounter -= 3;
+      rowCounter -= moveStep;
     }
 
     const endPosition = { x: calculatedStartPosition.x, y: calculatedStartPosition.y - rowCounter * calculatedRowHeight } as IPosition;

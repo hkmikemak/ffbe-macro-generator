@@ -1,7 +1,7 @@
 "use strict";
 
 const path = require('path');
-const { AngularCompilerPlugin } = require('@ngtools/webpack');
+const { AngularCompilerPlugin, PLATFORM } = require('@ngtools/webpack');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserPlugin  = require('terser-webpack-plugin');
 
@@ -57,8 +57,7 @@ module.exports = {
       entryModule: './src/web/js/modules/app.module#AppModule',
       tsConfigPath: './tsconfig.json',
       compilerOptions: {
-        enableIvy: false,
-        alwaysStrict: true,
+        enableIvy: true,
         removeComments: true,
         trace: true,
       },

@@ -10,11 +10,12 @@ const SLOT_POSITION: IPosition[] = [
 ];
 
 const COMMON_BUTTON_POSITION =  {
+  "Brave Shift": { x: 296, y: 1241 } as IPosition,
   "Depart": { x: 360, y: 1122 } as IPosition,
   "First Friend": { x: 360, y: 442 } as IPosition,
   "Next": { x: 360, y: 1126 } as IPosition,
-  "Raid": { x: 360, y: 733 } as IPosition,
   "Raid Refill Yes": { x: 504, y: 738 } as IPosition,
+  "Raid": { x: 360, y: 733 } as IPosition,
   "Reload": { x: 450, y: 1230 } as IPosition,
   "Repeat": { x: 270, y: 1230 } as IPosition,
 };
