@@ -1,66 +1,73 @@
-import { moveItemInArray, CdkDragDrop } from "@angular/cdk/drag-drop";
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { IMacroGroup } from "../..";
-import { IMacroItem } from "../../interfaces/macroItem";
-import { MacroGroupService } from "../../services/macroGroupService";
-import { MacroItemEditorComponent } from "../macroItemEditor";
+import { moveItemInArray, CdkDragDrop } from '@angular/cdk/drag-drop'
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { IMacroGroup } from '../..'
+import { IMacroItem } from '../../interfaces/macroItem'
+import { MacroGroupService } from '../../services/macroGroupService'
+import { MacroItemEditorComponent } from '../macroItemEditor'
 
 @Component({
-  selector: "macro-group",
-  styleUrls: ["./index.css"],
-  templateUrl: "./index.html",
+  selector: 'macro-group',
+  styleUrls: ['./index.css'],
+  templateUrl: './index.html'
 })
 export class MacroGroupComponent {
   @Input() public group: IMacroGroup;
   public isCollapsed: boolean = true;
   @Output() public deleteMeEvent: EventEmitter<void> = new EventEmitter();
 
-  constructor(private modalService: NgbModal, private macroGroupService: MacroGroupService) { }
+  constructor (
+    private modalService: NgbModal,
+    private macroGroupService: MacroGroupService
+  ) {}
 
-  public itemDrop(event: CdkDragDrop<IMacroItem[]>) {
+  public itemDrop (event: CdkDragDrop<IMacroItem[]>) {
     if (event.previousIndex !== event.currentIndex) {
-      moveItemInArray(this.group.items, event.previousIndex, event.currentIndex);
-      this.macroGroupService.updateCurrent();
+      moveItemInArray(
+        this.group.items,
+        event.previousIndex,
+        event.currentIndex
+      )
+      this.macroGroupService.updateCurrent()
     }
   }
 
-  public deleteItem(index: number) {
-    this.group.items.splice(index, 1);
-    this.macroGroupService.updateCurrent();
+  public deleteItem (index: number) {
+    this.group.items.splice(index, 1)
+    this.macroGroupService.updateCurrent()
   }
 
-  public addItem() {
+  public addItem () {
     const modal = this.modalService.open(MacroItemEditorComponent, {
-      backdrop: "static",
+      backdrop: 'static',
       centered: true,
-      keyboard: false,
-    });
+      keyboard: false
+    })
     modal.result
       .then((result: IMacroItem) => {
         if (result) {
-          this.group.items.push(result);
-          this.macroGroupService.updateCurrent();
+          this.group.items.push(result)
+          this.macroGroupService.updateCurrent()
         }
       })
-      .catch(() => undefined);
+      .catch(() => undefined)
   }
 
-  public updateRepeat(newValue) {
-    const value = parseInt(newValue, 10);
+  public updateRepeat (newValue) {
+    const value = parseInt(newValue, 10)
     if (!isNaN(value)) {
-      this.group.repeat = value;
-      this.macroGroupService.updateCurrent();
+      this.group.repeat = value
+      this.macroGroupService.updateCurrent()
     }
   }
 
-  public updateItem(index: number, item: IMacroItem) {
-    this.group.items[index] = item;
-    this.macroGroupService.updateCurrent();
+  public updateItem (index: number, item: IMacroItem) {
+    this.group.items[index] = item
+    this.macroGroupService.updateCurrent()
   }
 
-  public updateGroupName(newValue) {
-    this.group.name = newValue;
-    this.macroGroupService.updateCurrent();
+  public updateGroupName (newValue) {
+    this.group.name = newValue
+    this.macroGroupService.updateCurrent()
   }
 }

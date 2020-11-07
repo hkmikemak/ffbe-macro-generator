@@ -1,16 +1,20 @@
 import { FormControl, FormGroup } from '@angular/forms'
 import { IMacroAction } from '../..'
-import { click, IClickOption } from '../../../memuMacro'
-import { ClickEditorComponent } from './editor'
+import { clickButton } from '../../../ffbeMacro'
+import { IClickOption } from '../../../memuMacro'
+import { ClickButtonEditorComponent } from './editor'
 
-export const ClickMacroAction = {
+export const ClickButtonMacroAction = {
   displayOption: (option: any) => {
     const clickOption = option as IClickOption
     return `${clickOption.position.x},${clickOption.position.y}`
   },
-  editorComponent: ClickEditorComponent,
-  formGroupToOption: (formGroup: FormGroup) => ({ position: { x: formGroup.get('x').value, y: formGroup.get('y').value } } as IClickOption),
-  macroBuilder: click,
+  editorComponent: ClickButtonEditorComponent,
+  formGroupToOption: (formGroup: FormGroup) =>
+    ({
+      position: { x: formGroup.get('x').value, y: formGroup.get('y').value }
+    } as IClickOption),
+  macroBuilder: clickButton,
   optionToFormGroup: (option?: any) => {
     const result = new FormGroup({
       x: new FormControl(''),

@@ -1,4 +1,4 @@
-import { IMacroItem } from "./macroItem";
+import { IMacroItem } from './macroItem'
 
 export interface IMacroGroup {
   items: IMacroItem[];

@@ -1,6 +1,6 @@
-import { Type } from "@angular/core";
-import { FormGroup } from "@angular/forms";
-import { Macro, MacroConfig } from "../../memuMacro";
+import { Type } from '@angular/core'
+import { FormGroup } from '@angular/forms'
+import { Macro, MacroConfig } from '../../memuMacro'
 
 export interface IMacroAction {
   displayOption: (option: any) => string;

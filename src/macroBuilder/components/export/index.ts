@@ -1,21 +1,28 @@
-import { Component } from "@angular/core";
-import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
-import * as clipboard from "clipboard-polyfill/build/clipboard-polyfill.promise";
-import { MacroConfigService, MacroGroupService } from "../..";
-import { exportMacroItems } from "../../shared/parser";
+import { Component } from '@angular/core'
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
+import * as clipboard from 'clipboard-polyfill/text'
+import { MacroConfigService, MacroGroupService } from '../..'
+import { exportMacroItems } from '../../shared/parser'
 
 @Component({
-  styleUrls: ["./index.css"],
-  templateUrl: "./index.html",
+  styleUrls: ['./index.css'],
+  templateUrl: './index.html'
 })
 export class ExportComponent {
-  public output: string = "";
+  public output: string = '';
 
-  constructor(public activeModal: NgbActiveModal, private macroGroupService: MacroGroupService, private macroConfigService: MacroConfigService) {
-    this.output = exportMacroItems(this.macroGroupService, this.macroConfigService);
+  constructor (
+    public activeModal: NgbActiveModal,
+    private macroGroupService: MacroGroupService,
+    private macroConfigService: MacroConfigService
+  ) {
+    this.output = exportMacroItems(
+      this.macroGroupService,
+      this.macroConfigService
+    )
   }
 
-  public copyOutputToClipboard() {
-    clipboard.writeText(this.output);
+  public copyOutputToClipboard () {
+    clipboard.writeText(this.output)
   }
 }

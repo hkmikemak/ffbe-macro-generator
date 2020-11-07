@@ -1,5 +1,5 @@
-import { MacroConfig } from "../../memuMacro";
-import { IMacroGroup } from "./macroGroup";
+import { MacroConfig } from '../../memuMacro'
+import { IMacroGroup } from './macroGroup'
 
 export interface IExportedMacro {
   macroGroup: IMacroGroup[];

@@ -1,12 +1,12 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from "@angular/core";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { ALL_ACTIONS, IMacroItem } from "../..";
-import { MacroGroupService } from "../../services/macroGroupService";
-import { MacroItemEditorComponent } from "../macroItemEditor";
+import { Component, EventEmitter, Input, Output } from '@angular/core'
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
+import { ALL_ACTIONS, IMacroItem } from '../..'
+import { MacroGroupService } from '../../services/macroGroupService'
+import { MacroItemEditorComponent } from '../macroItemEditor'
 
 @Component({
-  selector: "macro-item",
-  templateUrl: "./index.html",
+  selector: 'macro-item',
+  templateUrl: './index.html'
 })
 export class MacroItemComponent {
   @Input() public item: IMacroItem;
@@ -15,26 +15,26 @@ export class MacroItemComponent {
 
   public actions = ALL_ACTIONS;
 
-  constructor(
+  constructor (
     private modalService: NgbModal,
     private macroGroupService: MacroGroupService
-  ) { }
+  ) {}
 
-  public openEditDialog() {
+  public openEditDialog () {
     const modal = this.modalService.open(MacroItemEditorComponent, {
-      backdrop: "static",
+      backdrop: 'static',
       centered: true,
-      keyboard: false,
+      keyboard: false
     });
 
-    (modal.componentInstance as MacroItemEditorComponent).setOption(this.item);
+    (modal.componentInstance as MacroItemEditorComponent).setOption(this.item)
 
     modal.result
       .then((result: IMacroItem) => {
         if (result) {
-          this.updateMeEvent.emit(result);
+          this.updateMeEvent.emit(result)
         }
       })
-      .catch(() => undefined);
+      .catch(() => undefined)
   }
 }
