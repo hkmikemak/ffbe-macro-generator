@@ -29,11 +29,11 @@ module.exports = {
     ],
   },
   optimization: {
-    noEmitOnErrors: true,
+    emitOnErrors: false,
     mangleWasmImports: true,
     minimizer: [
       new TerserPlugin({
-        cache: true,
+        // cache: true,
         extractComments: false,
         parallel: true,
         terserOptions: {
@@ -45,7 +45,7 @@ module.exports = {
             comments: false,
           },
         },
-        sourceMap: false,
+        // sourceMap: false,
       }),
     ],
     splitChunks: {
