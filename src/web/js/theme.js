@@ -9,7 +9,7 @@
     currentTheme.setAttribute("rel", "stylesheet");
     currentTheme.setAttribute(
       "href",
-      `https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/${
+      `https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.0.0/${
         mq.matches ? "superhero" : "yeti"
       }/bootstrap.min.css`
     );

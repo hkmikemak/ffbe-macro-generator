@@ -1,14 +1,23 @@
 "use strict";
 
-const browserSync = require('browser-sync');
-const del = require('del');
-const gulp = require('gulp');
-const webpack = require('webpack');
-const tslint = require('gulp-tslint');
-const chalk = require('chalk');
-const htmlmin = require('gulp-htmlmin');
+import * as browserSync from "browser-sync";
+import del from "del";
+import gulp from "gulp";
+import webpack from "webpack";
+import tslint from "gulp-tslint";
+import chalk from "chalk"
+import htmlmin from "gulp-htmlmin";
+import { CONFIG } from './webpack.config.js'
 
-const webpack_config = require('./webpack.config');
+// const browserSync = require('browser-sync');
+// const del = require('del');
+// const gulp = require('gulp');
+// const webpack = require('webpack');
+// const tslint = require('gulp-tslint');
+// const chalk = require('chalk');
+// const htmlmin = require('gulp-htmlmin');
+
+// const webpack_config = require('./webpack.config');
 
 const browser = browserSync.create();
 
@@ -26,19 +35,22 @@ gulp.task('lint', () =>
 );
 
 gulp.task('scripts', () => {
-  const config = { mode: 'production', ...webpack_config };
+  const config = { mode: 'production', ...CONFIG };
   const compiler = webpack(config);
-  console.log('\x1Bc');
+  //console.log('\x1Bc');
   compiler.watch({
     aggregateTimeout: 500,
     ignored: /node_modules/,
     pool: 1000
   }, (err, stats) => {
     if (err || stats.hasErrors()) {
-      console.log('\x1Bc');
+      //console.log('\x1Bc');
       console.log(chalk.red(`${(new Date()).toISOString()} Script Build Failed`));
       console.log(chalk.red(`${err ? err : stats.toString({ all: false, errors: true, errorDetails: true })}`))
     } else {
+
+      console.log(err);
+      //console.dir(stats);
       console.log(chalk.green(`${(new Date()).toISOString()} Script Build Done`));
       browser.reload();
     }
