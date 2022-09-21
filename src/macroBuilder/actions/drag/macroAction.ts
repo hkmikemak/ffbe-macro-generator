@@ -13,11 +13,11 @@ export const DragMacroAction = {
   macroBuilder: drag,
   optionToFormGroup: (option?: any) => {
     const result = new FormGroup({
-      easingFunction: new FormControl('', [Validators.required]),
-      from_x: new FormControl('', [Validators.required, Validators.min(0), Validators.max(720)]),
-      from_y: new FormControl('', [Validators.required, Validators.min(0), Validators.max(1280)]),
-      to_x: new FormControl('', [Validators.required, Validators.min(0), Validators.max(720)]),
-      to_y: new FormControl('', [Validators.required, Validators.min(0), Validators.max(1280)])
+      easingFunction: new FormControl(null, [Validators.required]),
+      from_x: new FormControl<number>(null, [Validators.required, Validators.min(0), Validators.max(720)]),
+      from_y: new FormControl<number>(null, [Validators.required, Validators.min(0), Validators.max(1280)]),
+      to_x: new FormControl<number>(null, [Validators.required, Validators.min(0), Validators.max(720)]),
+      to_y: new FormControl<number>(null, [Validators.required, Validators.min(0), Validators.max(1280)]),
     })
 
     if (option) {
@@ -30,5 +30,5 @@ export const DragMacroAction = {
     }
 
     return result
-  }
+  },
 } as IMacroAction

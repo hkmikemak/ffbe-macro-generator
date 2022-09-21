@@ -15,5 +15,5 @@ export const ALL_ACTIONS = {
   Delay: DelayMacroAction,
   Drag: DragMacroAction,
   'Open Skill Drawer': OpenSkillDrawerMacroAction,
-  'Scroll Rows': ScrollRowMacroAction
+  'Scroll Rows': ScrollRowMacroAction,
 }

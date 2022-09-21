@@ -6,7 +6,7 @@ import { MacroItemEditorComponent } from '../macroItemEditor'
 
 @Component({
   selector: 'macro-item',
-  templateUrl: './index.html'
+  templateUrl: './index.html',
 })
 export class MacroItemComponent {
   @Input() public item: IMacroItem;
@@ -24,7 +24,7 @@ export class MacroItemComponent {
     const modal = this.modalService.open(MacroItemEditorComponent, {
       backdrop: 'static',
       centered: true,
-      keyboard: false
+      keyboard: false,
     });
 
     (modal.componentInstance as MacroItemEditorComponent).setOption(this.item)

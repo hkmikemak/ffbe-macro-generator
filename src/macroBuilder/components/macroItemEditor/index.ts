@@ -8,7 +8,7 @@ import { ALL_ACTIONS } from '../../shared/actions'
 import { MacroItemEditorAnchorDirective } from '../macroItemEditorAnchor'
 
 @Component({
-  templateUrl: './index.html'
+  templateUrl: './index.html',
 })
 export class MacroItemEditorComponent implements OnInit {
   private option: any;
@@ -32,7 +32,7 @@ export class MacroItemEditorComponent implements OnInit {
       const viewContainerRef = this.editorHost.viewContainerRef
       viewContainerRef.clear()
       const componentRef = viewContainerRef.createComponent(componentFactory);
-      (<IEditorComponent>componentRef.instance).setFormGroup(this.formGroup)
+      (componentRef.instance as IEditorComponent).setFormGroup(this.formGroup)
     }
   }
 

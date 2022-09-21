@@ -8,7 +8,7 @@ import { MacroGroupService } from '../../services/macroGroupService'
 @Component({
   selector: 'macro-editor',
   styleUrls: ['./index.css'],
-  templateUrl: './index.html'
+  templateUrl: './index.html',
 })
 export class MacroEditorComponent {
   constructor (private modalService: NgbModal, public macroGroupService: MacroGroupService) {
@@ -18,7 +18,7 @@ export class MacroEditorComponent {
     const modal = this.modalService.open(NewMacroGroupDialogComponent, {
       backdrop: 'static',
       centered: true,
-      keyboard: false
+      keyboard: false,
     })
     modal.result
       .then((result: IMacroGroup[]) => {

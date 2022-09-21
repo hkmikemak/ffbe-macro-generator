@@ -3,17 +3,17 @@ import { IPosition } from '../interfaces/position'
 import { Macro } from '../models/macro'
 import { delay } from './delay'
 
-const DURATION_IN_SECOND = 1
+const DURATION_IN_SECOND = 0.8
 const TIMEING_STEP = 10
 const DELAY_BEFORE = 0.4
 const DELAY_AFTER = 0.4
-const EASING_POWER = 4
+const EASING_POWER = 6
 
 const easingFunctions = {
   easeIn: (power) => (t) => Math.pow(t, power),
   easeInOut: (power) => (t) => t < 0.5 ? easingFunctions.easeIn(power)(t * 2) / 2 : easingFunctions.easeOut(power)(t * 2 - 1) / 2 + 0.5,
   easeOut: (power) => (t) => 1 - Math.abs(Math.pow(t - 1, power)),
-  linear: () => (t) => t
+  linear: () => (t) => t,
 }
 
 export interface IDragOption {
@@ -51,7 +51,7 @@ export const drag = (option: IDragOption) =>
 
       // Add Mouse up
       source.currentFrame += frameDiff
-      source.scripts.push(`${source.currentFrame}--VINPUT--MULTI2:1:0:-1:-1:-2:2`)
+      source.scripts.push(`${source.currentFrame}--VINPUT--MULTI2:1:0:-1:-1:-1:2`)
     } else if (config.mode === 'Nox') {
       //
       // 0ScRiPtSePaRaToR720|1280|MULTI:1:2:388:1141ScRiPtSePaRaToR1208

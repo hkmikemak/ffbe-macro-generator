@@ -6,7 +6,7 @@ import { exportMacroItems } from '../../shared/parser'
 
 @Component({
   styleUrls: ['./index.css'],
-  templateUrl: './index.html'
+  templateUrl: './index.html',
 })
 export class ExportComponent {
   public output: string = '';

@@ -13,7 +13,7 @@ export const ClickSlotMacroAction = {
   macroBuilder: clickSlot,
   optionToFormGroup: (option?: any) => {
     const result = new FormGroup({
-      slot: new FormControl('', [Validators.required, Validators.min(1), Validators.max(6)])
+      slot: new FormControl<number>(null, [Validators.required, Validators.min(1), Validators.max(6)]),
     })
 
     if (option) {
@@ -22,5 +22,5 @@ export const ClickSlotMacroAction = {
     }
 
     return result
-  }
+  },
 } as IMacroAction

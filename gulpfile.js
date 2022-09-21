@@ -1,7 +1,7 @@
 "use strict";
 
 import * as browserSync from "browser-sync";
-import del from "del";
+import {deleteAsync} from "del";
 import gulp from "gulp";
 import webpack from "webpack";
 import tslint from "gulp-tslint";
@@ -9,21 +9,10 @@ import chalk from "chalk"
 import htmlmin from "gulp-htmlmin";
 import { CONFIG } from './webpack.config.js'
 
-// const browserSync = require('browser-sync');
-// const del = require('del');
-// const gulp = require('gulp');
-// const webpack = require('webpack');
-// const tslint = require('gulp-tslint');
-// const chalk = require('chalk');
-// const htmlmin = require('gulp-htmlmin');
-
-// const webpack_config = require('./webpack.config');
-
 const browser = browserSync.create();
 
 gulp.task('watch', () => {
   gulp.watch(['./src/web/index.html'], gulp.series('static'), () => { browser.reload(); });
-  // gulp.watch(['!./src/web/index.html', './src/**/*'], gulp.series('scripts'), () => { browser.reload(); });
 });
 
 gulp.task('lint', () =>
@@ -48,24 +37,14 @@ gulp.task('scripts', () => {
       console.log(chalk.red(`${(new Date()).toISOString()} Script Build Failed`));
       console.log(chalk.red(`${err ? err : stats.toString({ all: false, errors: true, errorDetails: true })}`))
     } else {
-
       console.log(err);
-      //console.dir(stats);
       console.log(chalk.green(`${(new Date()).toISOString()} Script Build Done`));
       browser.reload();
     }
   });
 });
 
-// gulp.task('scripts', () => new Promise((resolve) => {
-//   const config = { watch: true, mode: 'production', ...webpack_config };
-//   webpack(config, (err, stats) => {
-//     console.log((err) ? err : stats.toString());
-//     resolve();
-//   });
-// }));
-
-gulp.task('clean', () => del('./dist'));
+gulp.task('clean', () => deleteAsync('./dist'));
 
 gulp.task('static', () => {
   return gulp.src('./src/web/index.html')
@@ -74,8 +53,9 @@ gulp.task('static', () => {
 });
 
 gulp.task('server', () => {
-  browser.init({ server: { baseDir: './dist' } });
-
+  browser.init({ server: { baseDir: './dist' } }, () => {
+    console.log(`Ready`);
+  });
   return gulp.watch('./dist/**/*').on('change', () => {
     browser.reload();
   });
@@ -83,7 +63,8 @@ gulp.task('server', () => {
 
 gulp.task('dev', gulp.series(
   'clean',
-  gulp.parallel('static', 'scripts', 'server', 'watch')
+  'static',
+  gulp.parallel('server', 'scripts', 'watch'),
 ));
 
 gulp.task('default', gulp.series('dev'));

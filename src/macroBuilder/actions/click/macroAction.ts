@@ -13,8 +13,8 @@ export const ClickMacroAction = {
   macroBuilder: click,
   optionToFormGroup: (option?: any) => {
     const result = new FormGroup({
-      x: new FormControl(''),
-      y: new FormControl('')
+      x: new FormControl<number>(null),
+      y: new FormControl<number>(null),
     })
 
     if (option) {
@@ -24,5 +24,5 @@ export const ClickMacroAction = {
     }
 
     return result
-  }
+  },
 } as IMacroAction

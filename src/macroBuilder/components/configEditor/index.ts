@@ -5,7 +5,7 @@ import { MacroConfigService, MacroGroupService } from '../..'
 import { IClickOption } from '../../../memuMacro'
 
 @Component({
-  templateUrl: './index.html'
+  templateUrl: './index.html',
 })
 export class ConfigEditorComponent {
   public formGroup: FormGroup = null;
@@ -21,7 +21,7 @@ export class ConfigEditorComponent {
     this.formGroup = new FormGroup({
       framePerSecond: new FormControl(currentConfig.framePerSecond, [Validators.required, Validators.min(0)]),
       screenHeight: new FormControl(currentConfig.screenHeight, [Validators.required, Validators.min(0)]),
-      screenWidth: new FormControl(currentConfig.screenWidth, [Validators.required, Validators.min(0)])
+      screenWidth: new FormControl(currentConfig.screenWidth, [Validators.required, Validators.min(0)]),
     })
 
     this.mode = currentConfig.mode
@@ -37,7 +37,7 @@ export class ConfigEditorComponent {
       framePerSecond: this.formGroup.get('framePerSecond').value,
       mode: this.mode,
       screenHeight: this.formGroup.get('screenHeight').value,
-      screenWidth: this.formGroup.get('screenWidth').value
+      screenWidth: this.formGroup.get('screenWidth').value,
     }
 
     const currentMacroGroup = this.macroGroupService.getValue()

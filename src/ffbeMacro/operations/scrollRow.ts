@@ -25,7 +25,7 @@ export const scrollRow = (option: IScrollRowOption) =>
       drags.push(drag({
         easingFunction: 'easeOut',
         endPosition: option.direction === 'down' ? tempEndPosition : calculatedStartPosition,
-        startPosition: option.direction === 'down' ? calculatedStartPosition : tempEndPosition
+        startPosition: option.direction === 'down' ? calculatedStartPosition : tempEndPosition,
       }))
       rowCounter -= moveStep
     }
@@ -34,7 +34,7 @@ export const scrollRow = (option: IScrollRowOption) =>
     drags.push(drag({
       easingFunction: 'easeOut',
       endPosition: option.direction === 'down' ? endPosition : calculatedStartPosition,
-      startPosition: option.direction === 'down' ? calculatedStartPosition : endPosition
+      startPosition: option.direction === 'down' ? calculatedStartPosition : endPosition,
     }))
 
     return source.pipe(config, ...drags)

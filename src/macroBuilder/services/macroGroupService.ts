@@ -3,7 +3,7 @@ import { BehaviorSubject, Observable } from 'rxjs'
 import { IMacroGroup } from '..'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MacroGroupService {
   private dataSource: BehaviorSubject<IMacroGroup[]>;

@@ -5,7 +5,7 @@ import { getCommonButtonPosition } from '../../../ffbeMacro'
 import { IEditorComponent } from '../../interfaces/editorComponent'
 
 @Component({
-  templateUrl: './editor.html'
+  templateUrl: './editor.html',
 })
 export class DragEditorComponent implements IEditorComponent {
   public formGroup: FormGroup = null;

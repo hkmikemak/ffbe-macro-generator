@@ -8,7 +8,7 @@ import { IEditorComponent } from "../../interfaces/editorComponent";
 export class ClickMultipleSlotsEditorComponent implements IEditorComponent {
   public formGroup: FormGroup = null;
 
-  public timestamp: string = ""; //use this timestamp to dynamically build html id and label for attributes
+  public timestamp: string = ""; // use this timestamp to dynamically build html id and label for attributes
 
   constructor() {
     this.timestamp = Date.now().toString();

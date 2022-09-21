@@ -1,15 +1,15 @@
+import { Component, OnInit } from '@angular/core'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap'
 import * as clipboard from 'clipboard-polyfill/text'
 import { merge } from 'rxjs'
 import { GeneratorPackageComponent, MacroConfigService } from '../..'
-import { Component, OnInit } from '@angular/core'
 import { MacroGroupService } from '../../services/macroGroupService'
 import { buildMacro } from '../../shared/build'
 
 @Component({
   selector: 'script-output',
   styleUrls: ['./index.css'],
-  templateUrl: './index.html'
+  templateUrl: './index.html',
 })
 export class OutputComponent implements OnInit {
   public macroScript: string;
@@ -39,7 +39,7 @@ export class OutputComponent implements OnInit {
     this.modalService.open(GeneratorPackageComponent, {
       backdrop: 'static',
       centered: true,
-      keyboard: false
+      keyboard: false,
     })
   };
 

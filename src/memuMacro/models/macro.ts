@@ -14,7 +14,7 @@ export class Macro {
     return this.scripts.join('\n') + '\n'
   }
 
-  public pipe (config: MacroConfig, ...actions: Array<(source: Macro, config: MacroConfig) => Macro>): Macro {
+  public pipe (config: MacroConfig, ...actions: ((source: Macro, config: MacroConfig) => Macro)[]): Macro {
     if (!actions || !actions.length) {
       return this
     } else {

@@ -31,7 +31,7 @@ export const ClickMultipleSlotsMacroAction = {
       slot_3: new FormControl(false, []),
       slot_4: new FormControl(false, []),
       slot_5: new FormControl(false, []),
-      slot_6: new FormControl(false, [])
+      slot_6: new FormControl(false, []),
     })
 
     if (option) {
@@ -44,5 +44,5 @@ export const ClickMultipleSlotsMacroAction = {
     }
 
     return result
-  }
+  },
 } as IMacroAction

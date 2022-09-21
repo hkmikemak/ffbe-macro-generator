@@ -6,7 +6,7 @@ import { ConfigEditorComponent } from '../../../../macroBuilder/components/confi
 @Component({
   selector: 'app-root',
   styleUrls: ['./index.css'],
-  templateUrl: './index.html'
+  templateUrl: './index.html',
 })
 export class AppComponent {
   constructor (private modalService: NgbModal) { }
@@ -15,7 +15,7 @@ export class AppComponent {
     this.modalService.open(ExportComponent, {
       backdrop: 'static',
       centered: true,
-      keyboard: false
+      keyboard: false,
     })
   }
 
@@ -23,7 +23,7 @@ export class AppComponent {
     this.modalService.open(ConfigEditorComponent, {
       backdrop: 'static',
       centered: true,
-      keyboard: false
+      keyboard: false,
     })
   }
 }

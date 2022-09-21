@@ -12,13 +12,13 @@ export const ClickButtonMacroAction = {
   editorComponent: ClickButtonEditorComponent,
   formGroupToOption: (formGroup: FormGroup) =>
     ({
-      position: { x: formGroup.get('x').value, y: formGroup.get('y').value }
+      position: { x: formGroup.get('x').value, y: formGroup.get('y').value },
     } as IClickOption),
   macroBuilder: clickButton,
   optionToFormGroup: (option?: any) => {
     const result = new FormGroup({
-      x: new FormControl(''),
-      y: new FormControl('')
+      x: new FormControl<number>(null),
+      y: new FormControl<number>(null),
     })
 
     if (option) {
@@ -28,5 +28,5 @@ export const ClickButtonMacroAction = {
     }
 
     return result
-  }
+  },
 } as IMacroAction

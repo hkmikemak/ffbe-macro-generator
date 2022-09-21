@@ -4,7 +4,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap'
 import { importMacroItems, IMacroGroup, MacroConfigService } from '../..'
 
 @Component({
-  templateUrl: './index.html'
+  templateUrl: './index.html',
 })
 export class NewMacroGroupDialogComponent {
   public hasError: boolean = false;

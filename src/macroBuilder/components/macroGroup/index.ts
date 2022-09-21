@@ -9,7 +9,7 @@ import { MacroItemEditorComponent } from '../macroItemEditor'
 @Component({
   selector: 'macro-group',
   styleUrls: ['./index.css'],
-  templateUrl: './index.html'
+  templateUrl: './index.html',
 })
 export class MacroGroupComponent {
   @Input() public group: IMacroGroup;
@@ -41,7 +41,7 @@ export class MacroGroupComponent {
     const modal = this.modalService.open(MacroItemEditorComponent, {
       backdrop: 'static',
       centered: true,
-      keyboard: false
+      keyboard: false,
     })
     modal.result
       .then((result: IMacroItem) => {

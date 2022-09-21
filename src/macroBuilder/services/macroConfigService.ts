@@ -4,7 +4,7 @@ import { MacroConfig } from '../../memuMacro'
 import { deepFreeze } from '../shared/freeze'
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MacroConfigService {
   private dataSource: BehaviorSubject<MacroConfig>;

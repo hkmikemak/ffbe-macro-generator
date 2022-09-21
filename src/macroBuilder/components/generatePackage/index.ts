@@ -12,7 +12,7 @@ import { buildMacro } from '../../shared/build'
 
 @Component({
   styleUrls: ['./index.css'],
-  templateUrl: './index.html'
+  templateUrl: './index.html',
 })
 export class GeneratorPackageComponent {
   public formControl: FormControl = new FormControl(null, Validators.required);

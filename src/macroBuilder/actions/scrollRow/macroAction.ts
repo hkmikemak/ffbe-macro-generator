@@ -14,7 +14,7 @@ export const ScrollRowMacroAction = {
   optionToFormGroup: (option?: any) => {
     const result = new FormGroup({
       direction: new FormControl('', [Validators.required]),
-      rows: new FormControl('', [Validators.required, Validators.min(1)])
+      rows: new FormControl<number>(null, [Validators.required, Validators.min(1)]),
     })
 
     if (option) {
@@ -24,5 +24,5 @@ export const ScrollRowMacroAction = {
     }
 
     return result
-  }
+  },
 } as IMacroAction

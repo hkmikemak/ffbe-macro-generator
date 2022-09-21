@@ -3,7 +3,7 @@ import { FormGroup } from '@angular/forms'
 import { IEditorComponent } from '../../interfaces/editorComponent'
 
 @Component({
-  templateUrl: './editor.html'
+  templateUrl: './editor.html',
 })
 export class ScrollRowEditorComponent implements IEditorComponent {
   public formGroup: FormGroup = null;

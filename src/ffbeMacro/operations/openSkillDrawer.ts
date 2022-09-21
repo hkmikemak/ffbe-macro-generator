@@ -14,6 +14,6 @@ export const openSkillDrawer = (option: IOpenSkillDrawerOption) =>
     return source.pipe(config, drag({
       endPosition,
       startPosition,
-      easingFunction: 'easeOut'
+      easingFunction: 'linear',
     }))
   }

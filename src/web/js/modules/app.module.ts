@@ -6,15 +6,15 @@ import { AppComponent } from '../components/app'
 @NgModule({
   bootstrap: [AppComponent],
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   entryComponents: [
   ],
   imports: [
     BrowserModule,
-    MacroBuilderModule.forRoot()
+    MacroBuilderModule.forRoot(),
   ],
   providers: [
-  ]
+  ],
 })
 export class AppModule { }

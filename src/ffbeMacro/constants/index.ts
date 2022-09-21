@@ -6,7 +6,7 @@ const SLOT_POSITION: IPosition[] = [
   { x: 166, y: 1088 },
   { x: 504, y: 832 },
   { x: 504, y: 960 },
-  { x: 504, y: 1088 }
+  { x: 504, y: 1088 },
 ]
 
 const COMMON_BUTTON_POSITION = {
@@ -14,10 +14,10 @@ const COMMON_BUTTON_POSITION = {
   Depart: { x: 360, y: 1122 } as IPosition,
   'First Friend': { x: 360, y: 442 } as IPosition,
   Next: { x: 360, y: 1126 } as IPosition,
-  'Raid Refill Yes': { x: 504, y: 738 } as IPosition,
   Raid: { x: 360, y: 733 } as IPosition,
+  'Raid Refill Yes': { x: 504, y: 738 } as IPosition,
   Reload: { x: 450, y: 1230 } as IPosition,
-  Repeat: { x: 270, y: 1230 } as IPosition
+  Repeat: { x: 270, y: 1230 } as IPosition,
 }
 
 const calculatePosition = (
@@ -37,7 +37,7 @@ export const getSlotPosition = (
   const selectedPosition = SLOT_POSITION[slot - 1]
   return {
     x: calculateWidth(selectedPosition.x, config),
-    y: calculateHeight(selectedPosition.y, config)
+    y: calculateHeight(selectedPosition.y, config),
   }
 }
 
@@ -48,7 +48,7 @@ export const getCommonButtonPosition = (config: MacroConfig) => {
     const position = COMMON_BUTTON_POSITION[key]
     const newPosition = {
       x: calculateWidth(position.x, config),
-      y: calculateHeight(position.y, config)
+      y: calculateHeight(position.y, config),
     }
     result[key] = newPosition
   })

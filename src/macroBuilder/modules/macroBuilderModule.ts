@@ -18,13 +18,13 @@ import { MacroEditorComponent } from '../components/macroEditor'
 import { MacroGroupComponent } from '../components/macroGroup'
 import { MacroItemComponent } from '../components/macroItem'
 import { MacroItemEditorComponent } from '../components/macroItemEditor'
+import { MacroItemEditorAnchorDirective } from '../components/macroItemEditorAnchor'
 import { NewMacroGroupDialogComponent } from '../components/newMacroGroupDialog/index'
 import { OutputComponent } from '../components/output'
 import { FocusDirective } from '../directives/focusDirective'
 import { KeysPipe } from '../pipes/keysPipe'
 import { MacroConfigService } from '../services/macroConfigService'
 import { MacroGroupService } from '../services/macroGroupService'
-import { MacroItemEditorAnchorDirective } from '../components/macroItemEditorAnchor'
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import { MacroItemEditorAnchorDirective } from '../components/macroItemEditorAnc
     NewMacroGroupDialogComponent,
     OpenSkillDrawerEditorComponent,
     OutputComponent,
-    ScrollRowEditorComponent
+    ScrollRowEditorComponent,
   ],
   entryComponents: [
     ClickEditorComponent,
@@ -62,7 +62,7 @@ import { MacroItemEditorAnchorDirective } from '../components/macroItemEditorAnc
     MacroItemEditorComponent,
     NewMacroGroupDialogComponent,
     OpenSkillDrawerEditorComponent,
-    ScrollRowEditorComponent
+    ScrollRowEditorComponent,
   ],
   exports: [
     ClickEditorComponent,
@@ -82,21 +82,21 @@ import { MacroItemEditorAnchorDirective } from '../components/macroItemEditorAnc
     NewMacroGroupDialogComponent,
     OpenSkillDrawerEditorComponent,
     OutputComponent,
-    ScrollRowEditorComponent
+    ScrollRowEditorComponent,
   ],
   imports: [
     CommonModule,
     FormsModule,
     NgbModule,
     ReactiveFormsModule,
-    DragDropModule
-  ]
+    DragDropModule,
+  ],
 })
 export class MacroBuilderModule {
   public static forRoot (): ModuleWithProviders<MacroBuilderModule> {
     return {
       ngModule: MacroBuilderModule,
-      providers: [MacroGroupService, MacroConfigService]
+      providers: [MacroGroupService, MacroConfigService],
     }
   }
 }

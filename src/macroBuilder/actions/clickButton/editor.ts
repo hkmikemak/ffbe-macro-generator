@@ -6,7 +6,7 @@ import { IPosition } from '../../../memuMacro'
 import { IEditorComponent } from '../../interfaces/editorComponent'
 
 @Component({
-  templateUrl: './editor.html'
+  templateUrl: './editor.html',
 })
 export class ClickButtonEditorComponent implements IEditorComponent {
   public formGroup: FormGroup = null;
@@ -33,14 +33,14 @@ export class ClickButtonEditorComponent implements IEditorComponent {
       .setValidators([
         Validators.required,
         Validators.min(0),
-        Validators.max(this.configService.getValue().screenWidth)
+        Validators.max(this.configService.getValue().screenWidth),
       ])
     this.formGroup
       .get('x')
       .setValidators([
         Validators.required,
         Validators.min(0),
-        Validators.max(this.configService.getValue().screenHeight)
+        Validators.max(this.configService.getValue().screenHeight),
       ])
   }
 }

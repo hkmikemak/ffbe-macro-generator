@@ -8,7 +8,7 @@ import { MacroGroupService } from '../services/macroGroupService'
 export const exportMacroItems: (macroGroupService: MacroGroupService, macroConfigService: MacroConfigService) => string = (macroGroupService: MacroGroupService, macroConfigService: MacroConfigService) => {
   const iExportedMacro: IExportedMacro = {
     config: { ...macroConfigService.getValue() },
-    macroGroup: [...macroGroupService.getValue()]
+    macroGroup: [...macroGroupService.getValue()],
   }
   return compressToBase64(JSON.stringify(iExportedMacro))
 }

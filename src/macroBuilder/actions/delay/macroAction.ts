@@ -13,7 +13,7 @@ export const DelayMacroAction = {
   macroBuilder: delay,
   optionToFormGroup: (option?: any) => {
     const result = new FormGroup({
-      second: new FormControl('', [Validators.required, Validators.min(0)])
+      second: new FormControl<number>(null, [Validators.required, Validators.min(0)]),
     })
 
     if (option) {
@@ -22,5 +22,5 @@ export const DelayMacroAction = {
     }
 
     return result
-  }
+  },
 } as IMacroAction
